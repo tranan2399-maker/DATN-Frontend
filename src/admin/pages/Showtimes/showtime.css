@@ -1,0 +1,33 @@
+.react-time-picker__wrapper {
+  display: flex;
+  height: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  flex: 1;
+  padding: 10px 20px;
+}
+.react-time-picker {
+  /* height:fit-content; */
+  display: flex;
+}
+.react-time-picker__inputGroup__hour{
+    padding:0px 10px ;
+    outline: none;
+    border: 1px solid #e2e8f0;
+    background: transparent !important;
+    border-radius: 3px;
+}
+.react-time-picker__inputGroup__minute{
+    /* width: 18px !important; */
+    padding:0px 10px ;
+    outline: none;
+    border: 1px solid #e2e8f0;
+    background: transparent !important;
+    border-radius: 3px;
+}
+.react-time-picker__inputGroup__leadingZero{
+    margin-left: 5px;
+}
+.react-time-picker__inputGroup__divider{
+    margin: 0px 5px;
+}

@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --text-name-movie-color: 0 0% 12%;
+    --text-info-movie-color: 230 5% 74%;
+    --text-info-movie-color: 230 2% 29%;
+    --text-location-movie-color: 0 0% 8%;
+    --text-card-movie-color: 10 95% 9%;
+    --text-under-title: 240 3% 50%;
+
+    --bg-skeleton: rgb(71 85 105);
+    --background: 0 0% 93%;
+    --bg-section-inner: 240 5% 96%;
+    --bg-collection-card: 0 0% 100%;
+    --bg-main: 0 0% 98%;
+    --foreground: 0 0% 5%;
+    --primary-color-movie: 349 82% 57%;
+    --secondary-color-movie: 349 82% 65%;
+    --calendar-border: hsla(220, 13%, 91%, 1);
+    --button-control-carousel: 0 0% 25%;
+
+    --primary-title: black;
+    --copy-right-color: 234 4% 48%;
+
+    --shadow-card: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    --border-social-link: 0 0% 90%;
+    --border-payment: 349 82% 57%;
+    /* profile */
+    --border-profile-container: 240 6% 90%;
+
+    --bg-secondary: 0 0% 90%;
+    --bg-showtime: 230 26% 91%;
+    --bg-headerShowTime: 229 27% 92%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+  .dark {
+    --bg-four: 231 25% 11;
+    --bg-main: 227 27% 14%;
+    --bg-collection-card: 227 27% 14%;
+    --bg-secondary: 229 14% 22%;
+    --foreground: 210 40% 98%;
+    --border-social-link: 0 0% 90%;
+    --bg-headerShowTime: 229 27% 12%;
+    --bg-showtime: 231 25% 11%;
+
+    --primary-title: white;
+    --text-name-movie-color: 0 0% 90%;
+    --text-under-title: 210 40% 98%;
+    --text-card-movie-color: 240 5% 91%;
+    --text-location-movie-color: 240 4% 91%;
+    --text-info-movie-color: 230 5% 74%;
+
+    --shadow-card: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.21);
+
+    --border-payment: 349 82% 57%;
+    --border-social-link: 229 14% 22%;
+    --calendar-border: hsla(220, 3%, 81%, 0.3);
+    /* profile */
+    --border-profile-container: 240 4% 22%;
+
+    --gradient-start: rgba(0, 0, 0, 0.6000525210084033);
+    --gradient-mid1: rgba(255, 255, 255, 0);
+    --gradient-mid2: rgba(254, 254, 254, 0);
+    --gradient-mid3: rgba(255, 255, 255, 0);
+    --gradient-end: rgba(0, 0, 0, 0.5972514005602241);
+
+    --background: 230 26% 14%;
+    --gradient: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.6000525210084033) 0%,
+      rgba(255, 255, 255, 0) 8%,
+      rgba(254, 254, 254, 0) 48%,
+      rgba(255, 255, 255, 0) 92%,
+      rgba(0, 0, 0, 0.5972514005602241) 100%
+    );
+  }
+}
+/* .input-field {
+  @apply w-full rounded-lg border border-gray-300 bg-white dark:bg-form-input dark:text-white py-3 px-4 text-black outline-none transition focus:border-primary focus:ring-1 focus:ring-primary disabled:cursor-default disabled:bg-white;
+}
+
+.error-message {
+  @apply mt-1 text-red-500 text-sm font-bold;
+} */
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background-main text-foreground;
+  }
+}
