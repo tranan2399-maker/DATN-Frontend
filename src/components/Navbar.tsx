@@ -59,7 +59,7 @@ export const Navbar = ({
             </svg>
           </button>
 
-          <HashLink className="logo-container" to="#headerTop">
+          <Link className="logo-container" to="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="main-logo-icon"
@@ -82,7 +82,7 @@ export const Navbar = ({
               />
             </svg>
             <h1 className="logo-text ">Dream Cinema</h1>
-          </HashLink>
+          </Link>
         </div>
 
         <nav>
