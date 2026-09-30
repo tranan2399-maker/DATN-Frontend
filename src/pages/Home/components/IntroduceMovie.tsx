@@ -1,44 +1,51 @@
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+﻿import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { TicketCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import imgBg from '/Images/movies/money_heist-bg.jpg'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
+const heroStyles = `
+  @keyframes heroFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmerTitle {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(235,54,86,0.3)); }
+    50% { filter: drop-shadow(0 0 20px rgba(235,54,86,0.7)); }
+  }
+  .hero-btn-primary:hover {
+    background: linear-gradient(135deg, #ff1a45, #eb3656) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(235,54,86,0.5) !important;
+  }
+  .hero-btn-secondary:hover {
+    background: rgba(255,255,255,0.2) !important;
+    transform: translateY(-2px);
+  }
+`;
+
 function IntroduceMovie() {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
+    const styleEl = document.createElement('style');
+    styleEl.innerHTML = heroStyles;
+    document.head.appendChild(styleEl);
+
     const t = setTimeout(() => setLoaded(true), 100)
-    return () => clearTimeout(t)
+    return () => {
+      clearTimeout(t);
+      document.head.removeChild(styleEl);
+    }
   }, [])
 
   return (
     <div style={{ position: 'relative', overflow: 'hidden', background: '#000' }}>
-      <style>{
-        @keyframes heroFadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(40px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes shimmerTitle {
-          0%, 100% { filter: drop-shadow(0 0 8px rgba(235,54,86,0.3)); }
-          50% { filter: drop-shadow(0 0 20px rgba(235,54,86,0.7)); }
-        }
-        .hero-btn-primary:hover {
-          background: linear-gradient(135deg, #ff1a45, #eb3656) !important;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(235,54,86,0.5) !important;
-        }
-        .hero-btn-secondary:hover {
-          background: rgba(255,255,255,0.2) !important;
-          transform: translateY(-2px);
-        }
-      }</style>
-
       {/* Background image with fade-in */}
       <div style={{
         position: 'relative',
@@ -89,7 +96,7 @@ function IntroduceMovie() {
               marginBottom: '20px',
               animation: loaded ? 'slideUp 0.8s ease 0.2s both' : 'none'
             }}>
-              <span style={{ color: '#eb3656', fontSize: '1.2rem', fontWeight: 600 }}>?? �ANG CHI?U</span>
+              <span style={{ color: '#eb3656', fontSize: '1.2rem', fontWeight: 600 }}>🔥 ĐANG CHIẾU</span>
             </div>
 
             {/* Movie logo */}
@@ -106,7 +113,7 @@ function IntroduceMovie() {
               display: 'flex', gap: '16px', marginTop: '16px', marginBottom: '20px',
               animation: loaded ? 'slideUp 0.8s ease 0.6s both' : 'none'
             }}>
-              {['18+', '4 Ph?n', 'H�nh �?ng', '2017'].map((tag, i) => (
+              {['18+', '4 Phần', 'Hành Động', '2017'].map((tag, i) => (
                 <span key={i} style={{
                   color: '#ccc', fontSize: '1.3rem',
                   padding: '3px 10px',
@@ -127,9 +134,9 @@ function IntroduceMovie() {
               WebkitBoxOrient: 'vertical',
               overflow: 'hidden',
               animation: loaded ? 'slideUp 0.8s ease 0.7s both' : 'none'
-            } }>
-              Money Heist (La Casa de Papel) l� lo?t phim n?i ti?ng c?a Netflix v? m?t nh�m c�?p c� t�n gi?.
-              Gi�o s� l� k? ch? m�u �?ng sau c�c v? c�?p v� c� m?t c?t truy?n bi th?m th�c �?y h�nh �?ng c?a m?nh.
+            }}>
+              Money Heist (La Casa de Papel) là loạt phim nổi tiếng của Netflix về một nhóm cướp có tên giả.
+              Giáo sư là kẻ chủ mưu đằng sau các vụ cướp và có một cốt truyện bi thảm thúc đẩy hành động của mình.
             </p>
 
             {/* CTA Buttons */}
@@ -151,7 +158,7 @@ function IntroduceMovie() {
                     letterSpacing: '0.3px'
                   }}
                 >
-                  <TicketCheck size={20} /> Nh?n v� ngay
+                  <TicketCheck size={20} /> Nhận vé ngay
                 </button>
               </Link>
 
@@ -171,7 +178,7 @@ function IntroduceMovie() {
                       letterSpacing: '0.3px'
                     }}
                   >
-                    ? Xem trailer
+                    ▶ Xem trailer
                   </button>
                 </DialogTrigger>
                 <DialogContent className="p-0 w-fit border-0 bg-black">
