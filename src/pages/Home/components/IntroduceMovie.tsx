@@ -127,7 +127,7 @@ function IntroduceMovie() {
               WebkitBoxOrient: 'vertical',
               overflow: 'hidden',
               animation: loaded ? 'slideUp 0.8s ease 0.7s both' : 'none'
-            } as React.CSSProperties}>
+            } }>
               Money Heist (La Casa de Papel) là lo?t phim n?i ti?ng c?a Netflix v? m?t nhóm cý?p có tên gi?.
               Giáo sý là k? ch? mýu ð?ng sau các v? cý?p và có m?t c?t truy?n bi th?m thúc ð?y hành ð?ng c?a m?nh.
             </p>
