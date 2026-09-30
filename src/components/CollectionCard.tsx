@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+﻿import { useNavigate } from 'react-router-dom'
 import { MovieType } from '@/Interface/movie'
 import { convertMintuteToHour, getDay } from '@/utils'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
@@ -36,12 +36,12 @@ export const CollectionCard = ({
   ))
 
   const stars = Array.from({ length: 5 }, (_, i) => (
-    <span key={i} style={{ color: i < Math.round(rate) ? '#f5c518' : '#444', fontSize: '1.3rem' }}>?</span>
+    <span key={i} style={{ color: i < Math.round(rate) ? '#f5c518' : '#444', fontSize: '1.3rem' }}>★</span>
   ))
 
   return (
     <div
-      className={home-movie-card }
+      className={`home-movie-card ${className || ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
@@ -91,7 +91,7 @@ export const CollectionCard = ({
           gap: '4px',
           border: '1px solid rgba(245, 197, 24, 0.3)'
         }}>
-          <span style={{ color: '#f5c518', fontSize: '1.2rem' }}>?</span>
+          <span style={{ color: '#f5c518', fontSize: '1.2rem' }}>★</span>
           <span style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 600 }}>{rate}/5</span>
         </div>
       </div>
@@ -118,10 +118,10 @@ export const CollectionCard = ({
         {/* Date & Duration */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
           <span style={{ color: '#888', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <span>??</span> {getDay(fromDate)}
+            <span>📅</span> {getDay(fromDate)}
           </span>
           <span style={{ color: '#888', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <span>?</span> {convertMintuteToHour(duration)}
+            <span>⏱</span> {convertMintuteToHour(duration)}
           </span>
         </div>
 
@@ -148,7 +148,7 @@ export const CollectionCard = ({
             boxShadow: isHovered ? '0 4px 15px rgba(235,54,86,0.4)' : 'none'
           }}
         >
-          ?? �?t v� ngay
+          🎟 Đặt vé ngay
         </button>
       </div>
     </div>
