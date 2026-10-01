@@ -3,114 +3,67 @@ import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
+import { Gift, Ticket, Sparkles } from 'lucide-react';
 
 const promotions = [
   {
     id: 1,
-    title: 'ĐỒNG GIÁ 45K CHO HỌC SINH SINH VIÊN',
+    title: 'ĐỒNG GIÁ 45K CHO HSSV',
     desc: 'Ưu đãi đặc biệt khi xuất trình thẻ HSSV tại quầy. Áp dụng cho tất cả các suất chiếu 2D từ Thứ 2 đến Thứ 5.',
-    bgColor: 'linear-gradient(135deg, #eb3656 0%, #900C3F 100%)',
-    icon: '🎓'
+    bg: 'from-pink-600 to-red-800',
+    icon: <Ticket className="w-16 h-16 mb-4 text-white opacity-80" />
   },
   {
     id: 2,
     title: 'SIÊU COMBO MARVEL',
-    desc: 'Tặng ngay 1 ly Marvel độc quyền khi mua Combo bắp nước cỡ lớn. Số lượng có hạn!',
-    bgColor: 'linear-gradient(135deg, #FFC300 0%, #FF5733 100%)',
-    icon: '🍿'
+    desc: 'Tặng ngay 1 ly Marvel độc quyền khi mua Combo bắp nước cỡ lớn. Số lượng có hạn, áp dụng trên toàn quốc!',
+    bg: 'from-amber-500 to-orange-700',
+    icon: <Gift className="w-16 h-16 mb-4 text-white opacity-80" />
   },
   {
     id: 3,
-    title: 'NGÀY HỘI THÀNH VIÊN - THỨ 4 VUI VẺ',
-    desc: 'Giảm 20% cho tất cả thành viên Dream Cinema. Tích điểm x2 cho mọi giao dịch mua vé và bắp nước.',
-    bgColor: 'linear-gradient(135deg, #4A00E0 0%, #8E2DE2 100%)',
-    icon: '✨'
+    title: 'THỨ 4 VUI VẺ - NHÂN ĐÔI ĐIỂM',
+    desc: 'Giảm 20% cho tất cả thành viên Dream Cinema. Tích điểm x2 cho mọi giao dịch vé và bắp nước mỗi thứ 4 hàng tuần.',
+    bg: 'from-indigo-600 to-purple-800',
+    icon: <Sparkles className="w-16 h-16 mb-4 text-white opacity-80" />
   }
 ];
 
 export const PromotionCarousel = () => {
   return (
-    <section style={{ padding: '4rem 0', background: '#0a0b10' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-        <h2 style={{ 
-          color: '#fff', 
-          fontSize: '2.5rem', 
-          fontWeight: 700, 
-          marginBottom: '2rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px'
-        }}>
-          <span style={{ color: '#eb3656' }}>|</span> Khuyến Mãi & Sự Kiện
-        </h2>
+    <section className="py-16 bg-[#141414]">
+      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="w-2 h-8 bg-[#eb3656] rounded-sm"></div>
+          <h2 className="text-white text-3xl font-bold uppercase tracking-tight">Khuyến Mãi & Sự Kiện</h2>
+        </div>
 
         <Swiper
           modules={[Autoplay, EffectFade, Pagination]}
           effect={'fade'}
-          spaceBetween={30}
+          spaceBetween={0}
           slidesPerView={1}
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
-          pagination={{ clickable: true }}
-          style={{ borderRadius: '16px', overflow: 'hidden' }}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          pagination={{ clickable: true, dynamicBullets: true }}
+          className="rounded-2xl overflow-hidden shadow-2xl group"
         >
           {promotions.map((promo) => (
             <SwiperSlide key={promo.id}>
-              <div style={{
-                background: promo.bgColor,
-                padding: '4rem',
-                minHeight: '300px',
-                display: 'flex',
-                alignItems: 'center',
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-                {/* Decorative circle */}
-                <div style={{
-                  position: 'absolute',
-                  right: '-10%',
-                  top: '-20%',
-                  width: '400px',
-                  height: '400px',
-                  background: 'rgba(255,255,255,0.1)',
-                  borderRadius: '50%',
-                  filter: 'blur(40px)'
-                }} />
+              <div className={`bg-gradient-to-br ${promo.bg} p-8 md:p-16 min-h-[360px] flex items-center relative overflow-hidden transition-all duration-700`}>
+                
+                {/* Decorative background shapes */}
+                <div className="absolute right-0 top-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+                <div className="absolute left-0 bottom-0 translate-y-1/3 -translate-x-1/4 w-64 h-64 bg-black/20 rounded-full blur-2xl"></div>
 
-                <div style={{ position: 'relative', zIndex: 1, maxWidth: '60%' }}>
-                  <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>{promo.icon}</div>
-                  <h3 style={{ 
-                    color: '#fff', 
-                    fontSize: '2.5rem', 
-                    fontWeight: 800,
-                    marginBottom: '1rem',
-                    textShadow: '0 2px 10px rgba(0,0,0,0.3)'
-                  }}>
+                <div className="relative z-10 max-w-2xl">
+                  {promo.icon}
+                  <h3 className="text-white text-3xl md:text-5xl font-extrabold mb-4 drop-shadow-md leading-tight">
                     {promo.title}
                   </h3>
-                  <p style={{ 
-                    color: 'rgba(255,255,255,0.9)', 
-                    fontSize: '1.4rem',
-                    lineHeight: 1.6,
-                    fontWeight: 500
-                  }}>
+                  <p className="text-white/90 text-lg md:text-xl font-medium mb-8 leading-relaxed max-w-xl">
                     {promo.desc}
                   </p>
-                  <button style={{
-                    marginTop: '2rem',
-                    padding: '12px 30px',
-                    background: '#fff',
-                    color: '#000',
-                    border: 'none',
-                    borderRadius: '30px',
-                    fontSize: '1.2rem',
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
-                    transition: 'transform 0.2s ease'
-                  }}
-                  onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                  >
+                  <button className="bg-white text-black px-8 py-3 rounded-full font-bold uppercase tracking-wider hover:bg-[#eb3656] hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-[0_4px_15px_rgba(0,0,0,0.2)]">
                     Xem Chi Tiết
                   </button>
                 </div>

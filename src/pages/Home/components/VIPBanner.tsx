@@ -1,96 +1,44 @@
 ﻿export const VIPBanner = () => {
   return (
-    <section style={{ padding: '2rem 20px 6rem', background: '#0a0b10' }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        background: 'linear-gradient(135deg, #111 0%, #222 100%)',
-        borderRadius: '20px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '4rem',
-        boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
-        position: 'relative',
-        overflow: 'hidden',
-        border: '1px solid rgba(255, 215, 0, 0.2)'
-      }}>
-        {/* Glow effect */}
-        <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '100%',
-          height: '100%',
-          background: 'radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%)',
-          pointerEvents: 'none'
-        }} />
+    <section className="py-12 bg-[#141414]">
+      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+        <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0b10] rounded-3xl flex flex-col md:flex-row items-center justify-between p-8 md:p-12 shadow-2xl relative overflow-hidden border border-yellow-500/20">
+          
+          {/* Glow effects */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-500/10 via-transparent to-transparent pointer-events-none"></div>
 
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: '60%' }}>
-          <h2 style={{
-            color: '#FFD700',
-            fontSize: '3rem',
-            fontWeight: 800,
-            marginBottom: '1rem',
-            textShadow: '0 2px 10px rgba(255, 215, 0, 0.2)'
-          }}>
-            Trở Thành Hội Viên VIP
-          </h2>
-          <p style={{
-            color: '#ccc',
-            fontSize: '1.4rem',
-            lineHeight: 1.6,
-            marginBottom: '2rem',
-            fontWeight: 500
-          }}>
-            Đăng ký thẻ thành viên Dream Cinema ngay hôm nay để nhận đặc quyền vô hạn. 
-            Tích điểm lên tới 10% cho mọi giao dịch, tặng bắp nước sinh nhật và xem phim sớm trước ngày công chiếu.
-          </p>
-          <button style={{
-            padding: '15px 40px',
-            background: 'linear-gradient(135deg, #FFD700 0%, #F7971E 100%)',
-            color: '#000',
-            border: 'none',
-            borderRadius: '30px',
-            fontSize: '1.3rem',
-            fontWeight: 800,
-            cursor: 'pointer',
-            boxShadow: '0 5px 20px rgba(255, 215, 0, 0.3)',
-            transition: 'transform 0.3s ease',
-            textTransform: 'uppercase'
-          }}
-          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            Đăng Ký Ngay
-          </button>
-        </div>
+          <div className="relative z-10 md:w-3/5 text-center md:text-left mb-10 md:mb-0">
+            <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-600 text-3xl md:text-5xl font-black mb-4 drop-shadow-sm uppercase">
+              Trở Thành Hội Viên VIP
+            </h2>
+            <p className="text-gray-300 text-lg md:text-xl font-medium mb-8 leading-relaxed max-w-xl mx-auto md:mx-0">
+              Đăng ký thẻ thành viên Dream Cinema ngay hôm nay để nhận đặc quyền vô hạn. 
+              Tích điểm lên tới 10% cho mọi giao dịch, tặng bắp nước sinh nhật và xem phim sớm trước ngày công chiếu.
+            </p>
+            <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 py-4 rounded-full text-lg font-extrabold uppercase tracking-widest hover:scale-105 transition-transform duration-300 shadow-[0_5px_20px_rgba(253,224,71,0.4)]">
+              Đăng Ký Ngay
+            </button>
+          </div>
 
-        {/* Card Mockup */}
-        <div style={{ position: 'relative', zIndex: 1, width: '300px', height: '190px' }}>
-          <div style={{
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(135deg, #FFD700 0%, #F7971E 100%)',
-            borderRadius: '16px',
-            boxShadow: '-20px 20px 40px rgba(0,0,0,0.5)',
-            transform: 'rotate(-15deg) translateY(-20px)',
-            padding: '20px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            color: '#000'
-          }}>
-            <div style={{ fontSize: '1.5rem', fontWeight: 900, display: 'flex', justifyContent: 'space-between' }}>
-              <span>DREAM CINEMA</span>
-              <span>VIP</span>
-            </div>
-            <div>
-              <div style={{ fontSize: '1.2rem', opacity: 0.8, marginBottom: '5px' }}>MEMBER CARD</div>
-              <div style={{ fontSize: '1.4rem', fontWeight: 600, letterSpacing: '2px' }}>xxxx xxxx xxxx xxxx</div>
+          {/* Card Mockup */}
+          <div className="relative z-10 w-[280px] sm:w-[320px] h-[180px] sm:h-[200px] perspective-1000 mx-auto md:mx-0">
+            <div className="w-full h-full bg-gradient-to-br from-yellow-300 via-yellow-500 to-yellow-700 rounded-2xl shadow-[-20px_20px_40px_rgba(0,0,0,0.6)] transform -rotate-[10deg] -translate-y-2 p-6 flex flex-col justify-between text-black border border-yellow-200/50 relative overflow-hidden">
+              
+              {/* Card glare */}
+              <div className="absolute top-0 left-0 w-[150%] h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -rotate-45 -translate-x-1/2 -translate-y-1/2"></div>
+              
+              <div className="flex justify-between items-start font-black text-xl tracking-tight relative z-10">
+                <span>DREAM CINEMA</span>
+                <span className="bg-black text-yellow-400 px-2 py-0.5 rounded text-sm tracking-widest">VIP</span>
+              </div>
+              
+              <div className="relative z-10">
+                <div className="text-sm opacity-80 font-bold mb-1 uppercase tracking-widest">Member Card</div>
+                <div className="text-xl font-mono font-bold tracking-[0.2em]">•••• •••• •••• 9999</div>
+              </div>
             </div>
           </div>
+          
         </div>
       </div>
     </section>
