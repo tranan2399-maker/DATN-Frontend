@@ -36,6 +36,9 @@ module.exports = {
       }
     },
     extend: {
+      backgroundImage: {
+        'radial-at-c': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
+      },
       colors: {
         current: 'currentColor',
         transparent: 'transparent',

@@ -1,44 +1,105 @@
-﻿export const VIPBanner = () => {
-  return (
-    <section className="py-12 bg-[#141414]">
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-        <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0b10] rounded-3xl flex flex-col md:flex-row items-center justify-between p-8 md:p-12 shadow-2xl relative overflow-hidden border border-yellow-500/20">
-          
-          {/* Glow effects */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-500/10 via-transparent to-transparent pointer-events-none"></div>
+import React, { useContext } from 'react';
+import { Award, CheckCircle2, Crown, Sparkles, Nfc } from 'lucide-react';
+import { ContextMain } from '@/context/Context';
 
-          <div className="relative z-10 md:w-3/5 text-center md:text-left mb-10 md:mb-0">
-            <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-600 text-3xl md:text-5xl font-black mb-4 drop-shadow-sm uppercase">
-              Trở Thành Hội Viên VIP
-            </h2>
-            <p className="text-gray-300 text-lg md:text-xl font-medium mb-8 leading-relaxed max-w-xl mx-auto md:mx-0">
-              Đăng ký thẻ thành viên Dream Cinema ngay hôm nay để nhận đặc quyền vô hạn. 
-              Tích điểm lên tới 10% cho mọi giao dịch, tặng bắp nước sinh nhật và xem phim sớm trước ngày công chiếu.
-            </p>
-            <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 py-4 rounded-full text-lg font-extrabold uppercase tracking-widest hover:scale-105 transition-transform duration-300 shadow-[0_5px_20px_rgba(253,224,71,0.4)]">
-              Đăng Ký Ngay
-            </button>
+interface VIPBannerProps {
+  onOpenVipModal: () => void;
+}
+
+export const VIPBanner: React.FC<VIPBannerProps> = ({ onOpenVipModal }) => {
+  const { userDetail, isLogined } = useContext(ContextMain);
+
+  const userName = isLogined && userDetail?.message?.name
+    ? userDetail.message.name.toUpperCase()
+    : 'DREAM MEMBER';
+
+  return (
+    <section className="max-w-[1280px] w-full mx-auto px-4 md:px-6 mb-16">
+      <div className="relative rounded-[24px] overflow-hidden bg-gradient-to-r from-[#17140B] via-[#0E0E12] to-[#14141A] p-6 md:p-10 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 border border-[#f5b300]/25">
+        {/* Glow ambient background */}
+        <div className="absolute -left-20 -top-20 w-80 h-80 rounded-full bg-[#f5b300]/10 blur-[80px] pointer-events-none" />
+
+        {/* Left Benefit Content */}
+        <div className="max-w-[620px] relative z-10 space-y-4">
+          <div className="flex items-center gap-2">
+            <span className="px-3 py-1 rounded-full bg-[#f5b300]/20 text-[#ffd484] text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 border border-[#f5b300]/30">
+              <Crown className="w-3.5 h-3.5 text-[#ffd484]" />
+              DREAM VIP CLUB
+            </span>
+            <span className="text-[#A8A8B3] text-xs">Đặc quyền thượng lưu</span>
           </div>
 
-          {/* Card Mockup */}
-          <div className="relative z-10 w-[280px] sm:w-[320px] h-[180px] sm:h-[200px] perspective-1000 mx-auto md:mx-0">
-            <div className="w-full h-full bg-gradient-to-br from-yellow-300 via-yellow-500 to-yellow-700 rounded-2xl shadow-[-20px_20px_40px_rgba(0,0,0,0.6)] transform -rotate-[10deg] -translate-y-2 p-6 flex flex-col justify-between text-black border border-yellow-200/50 relative overflow-hidden">
-              
-              {/* Card glare */}
-              <div className="absolute top-0 left-0 w-[150%] h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -rotate-45 -translate-x-1/2 -translate-y-1/2"></div>
-              
-              <div className="flex justify-between items-start font-black text-xl tracking-tight relative z-10">
-                <span>DREAM CINEMA</span>
-                <span className="bg-black text-yellow-400 px-2 py-0.5 rounded text-sm tracking-widest">VIP</span>
+          <h2 className="text-2xl sm:text-3xl text-[#ffd484] font-extrabold tracking-tight">
+            TRỞ THÀNH HỘI VIÊN VIP NGAY HÔM NAY
+          </h2>
+
+          <p className="text-xs sm:text-sm text-[#A8A8B3] leading-relaxed">
+            Nâng tầm trải nghiệm điện ảnh với hệ thống quyền lợi ưu tiên cao cấp nhất dành riêng cho các tín đồ mê phim thực thụ:
+          </p>
+
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-white pt-1">
+            <li className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-[#ffd484] shrink-0" />
+              <span>Tích lũy đến 10% giá trị mọi vé</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-[#ffd484] shrink-0" />
+              <span>Miễn phí đổi vé &amp; nâng hạng ghế</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-[#ffd484] shrink-0" />
+              <span>Tặng combo bắp nước ngày sinh nhật</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-[#ffd484] shrink-0" />
+              <span>Vé xem trước suất chiếu đặc biệt</span>
+            </li>
+          </ul>
+
+          <div className="pt-2">
+            <button
+              onClick={onOpenVipModal}
+              className="h-12 px-6 rounded-xl bg-[#f5b300] text-[#412d00] text-sm font-bold inline-flex items-center gap-2 shadow-[0_4px_24px_rgba(245,179,1,0.3)] hover:brightness-110 transition-all transform hover:-translate-y-0.5 cursor-pointer"
+            >
+              <Award className="w-5 h-5 text-[#412d00]" />
+              <span>ĐĂNG KÝ HỘI VIÊN VIP</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Right 3D Membership Card Graphic */}
+        <div className="relative z-10 lg:pr-6">
+          <div className="relative w-[300px] sm:w-[350px] h-[200px] sm:h-[220px] rounded-2xl bg-gradient-to-tr from-[#1E1B15] via-[#2A261D] to-[#12110D] p-5 sm:p-6 shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500 flex flex-col justify-between overflow-hidden border border-[#f5b300]/30">
+            <div className="absolute -right-20 -top-20 w-44 h-44 rounded-full bg-[#ffd484]/10 blur-xl pointer-events-none" />
+
+            <div className="flex items-center justify-between">
+              <span className="text-sm sm:text-base text-[#ffd484] font-black tracking-widest uppercase">
+                DREAM CINEMA
+              </span>
+              <Nfc className="w-6 h-6 text-[#ffd484]" />
+            </div>
+
+            <div>
+              <div className="w-10 h-7 rounded bg-gradient-to-r from-amber-200 to-yellow-500 mb-2.5 opacity-90 shadow-sm" />
+              <p className="text-xs sm:text-sm font-mono text-[#ffd484] tracking-widest">
+                **** **** **** 8899
+              </p>
+            </div>
+
+            <div className="flex items-end justify-between">
+              <div>
+                <p className="text-[8px] uppercase tracking-wider text-[#ffd484]/60">CHỦ THẺ</p>
+                <p className="text-xs text-white font-bold uppercase tracking-wider truncate max-w-[170px]">
+                  {userName}
+                </p>
               </div>
-              
-              <div className="relative z-10">
-                <div className="text-sm opacity-80 font-bold mb-1 uppercase tracking-widest">Member Card</div>
-                <div className="text-xl font-mono font-bold tracking-[0.2em]">•••• •••• •••• 9999</div>
+              <div className="text-right">
+                <span className="px-2 py-0.5 rounded bg-[#f5b300] text-[#412d00] text-[9px] font-extrabold uppercase shadow-sm">
+                  DIAMOND VIP
+                </span>
               </div>
             </div>
           </div>
-          
         </div>
       </div>
     </section>
