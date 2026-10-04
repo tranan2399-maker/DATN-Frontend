@@ -52,10 +52,10 @@ const TableCinema = () => {
               {data.map((cate, index) => (
                 <tr key={index}>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                    <p className="text-primary-white">{cate.CinemaName}</p>
+                    <p className="text-primary-white">{cate.CinemaName || cate.name}</p>
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                    <p className="text-primary-white">{cate.CinemaAdress}</p>
+                    <p className="text-primary-white">{cate.CinemaAdress || cate.address}</p>
                   </td>
 
                   {userDetail?.message?.roleIds == ROLE_ADMIN && (

@@ -22,7 +22,7 @@ function DetailTicketItem({ ticketId }: { ticketId: string }) {
     movieId: { image: imageMovie = '', name: nameMovie = '', categoryId = [] },
     priceId: { price: priceMovie },
     userId: { name: nameUser = '', email: emailUser = '' },
-    cinemaId: { CinemaName, CinemaAdress },
+    cinemaId,
     screenRoomId: { name: nameScreen },
     showtimeId: { timeFrom, timeTo },
     seatId,
@@ -79,10 +79,10 @@ function DetailTicketItem({ ticketId }: { ticketId: string }) {
           Phòng chiếu : {nameScreen}
         </p>
         <p className="bg-white p-5 shadow-default dark:border-strokedark dark:bg-boxdark rounded-sm border border-stroke">
-          Tên rạp : {CinemaName}
+          Tên rạp : {cinemaId?.CinemaName || (cinemaId as any)?.name || ''}
         </p>
         <p className="bg-white p-5 shadow-default dark:border-strokedark dark:bg-boxdark rounded-sm border border-stroke">
-          Địa chỉ : {CinemaAdress}
+          Địa chỉ : {cinemaId?.CinemaAdress || (cinemaId as any)?.address || ''}
         </p>
       </div>
 

@@ -52,8 +52,15 @@ export interface ShowTimeCol {
 
 export interface CinemaID {
   _id: string
+  name?: string
+  address?: string
   CinemaName: string
   CinemaAdress: string
+  city?: string
+  amenities?: string[]
+  hotline?: string
+  imageUrl?: string
+  badge?: string
 }
 
 export interface ScreenRoomID {

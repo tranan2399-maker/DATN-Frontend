@@ -19,8 +19,8 @@ const FormCinema = ({ typeForm }: FormCinemaProps) => {
     queryFn: async () => {
       const data = await getOneCinema(id as string)
 
-      setFieldValue('CinemaName', data?.CinemaName)
-      setFieldValue('CinemaAdress', data?.CinemaAdress)
+      setFieldValue('CinemaName', data?.CinemaName || data?.name || '')
+      setFieldValue('CinemaAdress', data?.CinemaAdress || data?.address || '')
       // setFieldValue('ScreeningRoomId', data?.ScreeningRoomId)
       return data
     },
@@ -30,8 +30,15 @@ const FormCinema = ({ typeForm }: FormCinemaProps) => {
   // mutation react-query
   const { mutate } = useMutation({
     mutationFn: async (bodyData: FormCinemaAdd) => {
-      if (typeForm === 'EDIT') return editCinema(bodyData, id as string)
-      return addCinema(bodyData)
+      const payload: FormCinemaAdd = {
+        ...bodyData,
+        name: bodyData.name || bodyData.CinemaName,
+        address: bodyData.address || bodyData.CinemaAdress,
+        CinemaName: bodyData.CinemaName || bodyData.name || '',
+        CinemaAdress: bodyData.CinemaAdress || bodyData.address || ''
+      }
+      if (typeForm === 'EDIT') return editCinema(payload, id as string)
+      return addCinema(payload)
     },
     onSuccess: () => {
       if (typeForm === 'EDIT') {

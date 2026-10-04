@@ -65,6 +65,8 @@ export interface TicketBill {
     _id: string
     CinemaName: string
     CinemaAdress: string
+    name?: string
+    address?: string
   }
   screenRoomId: {
     _id: string

@@ -46,6 +46,8 @@ export interface TicketType {
     _id: string
     CinemaName: string
     CinemaAdress: string
+    name?: string
+    address?: string
   }
   paymentToken?: string
   userId?: string
@@ -103,7 +105,9 @@ const ticketInitialState: TicketState = {
     cinemaId: {
       _id: '',
       CinemaName: '',
-      CinemaAdress: ''
+      CinemaAdress: '',
+      name: '',
+      address: ''
     },
     paymentToken: '',
     userId: '',

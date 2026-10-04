@@ -42,14 +42,16 @@ export const QuickBookingBar = ({ movies }: Props) => {
   // Extract cinemas available for this movie
   const availableCinemas = useMemo(() => {
     if (!movieDetail?.showTimeCol) return [];
-    const cinemaMap = new Map<string, { _id: string; CinemaName: string; CinemaAdress: string }>();
+    const cinemaMap = new Map<string, { _id: string; CinemaName: string; CinemaAdress: string; name?: string; address?: string }>();
     movieDetail.showTimeCol.forEach((st: any) => {
       const c = st?.cinemaId || st?.screenRoomId?.cinemaId;
       if (c && c._id && !cinemaMap.has(c._id)) {
         cinemaMap.set(c._id, {
           _id: c._id,
           CinemaName: c.CinemaName || c.name || 'Rạp Dream Cinema',
-          CinemaAdress: c.CinemaAdress || c.address || ''
+          CinemaAdress: c.CinemaAdress || c.address || '',
+          name: c.name || c.CinemaName || 'Rạp Dream Cinema',
+          address: c.address || c.CinemaAdress || ''
         });
       }
     });
@@ -134,11 +136,13 @@ export const QuickBookingBar = ({ movies }: Props) => {
         _id: showtime._id,
         timeFrom: showtime.timeFrom
       },
-      cinema_name: cinema?.CinemaName || 'Dream Cinema',
+      cinema_name: cinema?.name || cinema?.CinemaName || 'Dream Cinema',
       cinemaId: {
         _id: cinema?._id || selectedCinemaId,
-        CinemaName: cinema?.CinemaName || 'Dream Cinema',
-        CinemaAdress: cinema?.CinemaAdress || ''
+        CinemaName: cinema?.CinemaName || cinema?.name || 'Dream Cinema',
+        CinemaAdress: cinema?.CinemaAdress || cinema?.address || '',
+        name: cinema?.name || cinema?.CinemaName || 'Dream Cinema',
+        address: cinema?.address || cinema?.CinemaAdress || ''
       },
       id_movie: {
         _id: movieDetail._id,
@@ -212,7 +216,7 @@ export const QuickBookingBar = ({ movies }: Props) => {
                 </option>
                 {availableCinemas.map(c => (
                   <option key={c._id} value={c._id} className="bg-[#1F1F24] text-white">
-                    {c.CinemaName}
+                    {c.name || c.CinemaName}
                   </option>
                 ))}
               </select>

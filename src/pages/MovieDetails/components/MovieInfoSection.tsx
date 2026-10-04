@@ -39,8 +39,10 @@ export interface ShowTime {
   }
   cinemaId: {
     _id: string
-    CinemaName: string
-    CinemaAdress: string
+    CinemaName?: string
+    CinemaAdress?: string
+    name?: string
+    address?: string
   }
   status: string
   timeFrom: string
@@ -129,11 +131,13 @@ export const MovieInfoSection = () => {
         timeFrom: showtime.timeFrom,
         timeTo: showtime.timeTo
       },
-      cinema_name: screenRoom.cinemaId.CinemaName,
+      cinema_name: screenRoom.cinemaId?.name || screenRoom.cinemaId?.CinemaName || '',
       cinemaId: {
-        _id: screenRoom.cinemaId._id,
-        CinemaName: screenRoom.cinemaId.CinemaName,
-        CinemaAdress: screenRoom.cinemaId.CinemaAdress
+        _id: screenRoom.cinemaId?._id,
+        CinemaName: screenRoom.cinemaId?.CinemaName || screenRoom.cinemaId?.name || '',
+        CinemaAdress: screenRoom.cinemaId?.CinemaAdress || screenRoom.cinemaId?.address || '',
+        name: screenRoom.cinemaId?.name || screenRoom.cinemaId?.CinemaName || '',
+        address: screenRoom.cinemaId?.address || screenRoom.cinemaId?.CinemaAdress || ''
       },
       id_movie: {
         _id: _id,

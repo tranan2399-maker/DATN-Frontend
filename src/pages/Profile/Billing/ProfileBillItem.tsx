@@ -41,8 +41,8 @@ function ProfileBillItem({ data }: { data: TicketBill }) {
           </TabsList>
           <TabsContent value="account">
             <div className="mb-5">
-              <h3 className="text-2xl">{data.cinemaId.CinemaName} </h3>
-              <p className="text-xl">{data.cinemaId.CinemaAdress} </p>
+              <h3 className="text-2xl">{data.cinemaId?.name || data.cinemaId?.CinemaName || ''} </h3>
+              <p className="text-xl">{data.cinemaId?.address || data.cinemaId?.CinemaAdress || ''} </p>
             </div>
             <div>
               <h3 className="text-2xl">{data.movieId.name}</h3>

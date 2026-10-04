@@ -12,8 +12,10 @@ import { useState } from 'react'
 import HashLoader from 'react-spinners/HashLoader'
 interface CinemaType {
   _id: string
-  CinemaName: string
-  CinemaAdress: string
+  CinemaName?: string
+  CinemaAdress?: string
+  name?: string
+  address?: string
 }
 
 export const LocationSelector = ({
@@ -43,7 +45,7 @@ export const LocationSelector = ({
     <div className="location-select-container ">
       <Select onValueChange={(value: string) => handleOnSelect(value)}>
         <SelectTrigger className="w-52 dark:bg-[#313441] bg-[#ccced8] outline-none py-8 dark:text-[#e6e6e8] text-[black] border-none px-5 text-[1.7rem] rounded-xl">
-          <SelectValue placeholder={defaultLocation.CinemaName ?? ''} />
+          <SelectValue placeholder={defaultLocation?.name || defaultLocation?.CinemaName || ''} />
         </SelectTrigger>
         <SelectContent>
           {dataCinema?.map((data: CinemaType) => {
@@ -53,7 +55,7 @@ export const LocationSelector = ({
                 className="text-[1.6rem]"
                 value={data._id}
               >
-                {data.CinemaName}
+                {data.name || data.CinemaName}
               </SelectItem>
             )
           })}
@@ -63,13 +65,13 @@ export const LocationSelector = ({
       <p className="selected-location text-primary-movieColor">
       Vị trí:{' '}
         <span className="text-primary-locationMovie">
-          {defaultLocation.CinemaAdress ?? ''}
+          {defaultLocation?.address || defaultLocation?.CinemaAdress || ''}
         </span>
       </p>
       <p className="selected-theatre text-primary-movieColor">
       Rạp phim :{' '}
         <span className="text-primary-locationMovie">
-          {defaultLocation.CinemaName ?? ''}
+          {defaultLocation?.name || defaultLocation?.CinemaName || ''}
         </span>
       </p>
     </div>

@@ -85,9 +85,13 @@ export const mapMovieToStitch = (m: MovieType): StitchMovie => {
     rating: m.rate || 5,
     synopsis: m.desc || 'Đang cập nhật',
     duration: m.duration ? `${m.duration} phút` : '120 phút',
-    releaseDate: m.fromDate
-      ? new Date(m.fromDate).toLocaleDateString('vi-VN')
-      : 'Đang cập nhật',
+    releaseDate: (() => {
+      if (!m.fromDate) return 'Đang cập nhật';
+      const d = new Date(m.fromDate);
+      if (!isNaN(d.getTime())) return d.toLocaleDateString('vi-VN');
+      const str = String(m.fromDate).trim();
+      return str && str !== 'undefined' && str !== 'null' && str !== 'Invalid Date' ? str : 'Đang cập nhật';
+    })(),
     status:
       m.status === 'IS_SHOWING'
         ? 'now_showing'
