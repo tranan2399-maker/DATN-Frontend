@@ -1,9 +1,10 @@
 import { HashLink } from 'react-router-hash-link';
 import { Film, Phone, Mail, MapPin, Facebook, Linkedin, Youtube } from 'lucide-react';
+import '../pages/Home/home-stitch.css';
 
 export const Footer = () => {
   return (
-    <footer className="w-full bg-[#08080B] text-[#e4e1e7] border-t border-[#E50914] pt-12 pb-8 mt-16 selection:bg-[#E50914] selection:text-white">
+    <footer className="footer-stitch w-full bg-[#08080B] text-[#e4e1e7] border-t border-[#E50914] pt-12 pb-8 mt-16 selection:bg-[#E50914] selection:text-white">
       <div className="max-w-[1280px] mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Brand & Hotline */}
@@ -70,8 +71,8 @@ export const Footer = () => {
 
           {/* CÔNG TY */}
           <div className="space-y-3">
-            <h4 className="text-xs uppercase font-bold tracking-widest text-[#ffd484]">CÔNG TY</h4>
-            <ul className="space-y-2 text-xs text-[#A8A8B3]">
+            <h4 className="text-sm uppercase font-bold tracking-wider text-[#ffd484] mb-3">CÔNG TY</h4>
+            <ul className="space-y-2.5 text-xs text-[#A8A8B3]">
               <li>
                 <HashLink to="/about-us" className="hover:text-white transition-colors">Về chúng tôi</HashLink>
               </li>
@@ -89,8 +90,8 @@ export const Footer = () => {
 
           {/* THÔNG TIN */}
           <div className="space-y-3">
-            <h4 className="text-xs uppercase font-bold tracking-widest text-[#ffd484]">THÔNG TIN</h4>
-            <ul className="space-y-2 text-xs text-[#A8A8B3]">
+            <h4 className="text-sm uppercase font-bold tracking-wider text-[#ffd484] mb-3">THÔNG TIN</h4>
+            <ul className="space-y-2.5 text-xs text-[#A8A8B3]">
               <li>
                 <HashLink to="/showtimes" className="hover:text-white transition-colors">Lịch chiếu phim</HashLink>
               </li>
@@ -108,8 +109,8 @@ export const Footer = () => {
 
           {/* HỖ TRỢ */}
           <div className="space-y-3">
-            <h4 className="text-xs uppercase font-bold tracking-widest text-[#ffd484]">HỖ TRỢ</h4>
-            <ul className="space-y-2 text-xs text-[#A8A8B3]">
+            <h4 className="text-sm uppercase font-bold tracking-wider text-[#ffd484] mb-3">HỖ TRỢ</h4>
+            <ul className="space-y-2.5 text-xs text-[#A8A8B3]">
               <li>
                 <span className="hover:text-white cursor-pointer transition-colors">Hướng dẫn đặt vé</span>
               </li>
@@ -127,7 +128,7 @@ export const Footer = () => {
 
           {/* GÓP Ý & VIP CLUB */}
           <div className="space-y-3">
-            <h4 className="text-xs uppercase font-bold tracking-widest text-[#ffd484]">DREAM VIP CLUB</h4>
+            <h4 className="text-sm uppercase font-bold tracking-wider text-[#ffd484] mb-3">DREAM VIP CLUB</h4>
             <p className="text-xs text-[#A8A8B3] leading-relaxed">
               Tận hưởng đặc quyền tích lũy điểm thưởng đến 10%, đổi vé miễn phí và quà tặng sinh nhật dành riêng cho hội viên.
             </p>
@@ -143,7 +144,7 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#71717A]">
+        <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#71717A]">
           <p>© {new Date().getFullYear()} DREAM CINEMA. Toàn bộ bản quyền được bảo lưu.</p>
           <div className="flex items-center gap-4">
             <HashLink to="/policy" className="hover:text-[#A8A8B3] transition-colors">Điều khoản dịch vụ</HashLink>

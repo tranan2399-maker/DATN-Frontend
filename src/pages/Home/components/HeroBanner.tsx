@@ -85,7 +85,7 @@ export const HeroBanner = ({
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-[52px] md:leading-[58px] text-white font-extrabold uppercase tracking-tight line-clamp-2">
+          <h1 className="text-3xl sm:text-4xl md:text-[54px] md:leading-[60px] text-white font-extrabold uppercase tracking-tight line-clamp-2">
             {h.title}
           </h1>
 

@@ -1,9 +1,19 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600;700&display=swap');
 
-.homepage-stitch {
+/* ==========================================================================
+   HOMEPAGE & FOOTER STITCH DESIGN SYSTEM TOKENS
+   Scoped to .homepage-stitch and .footer-stitch.
+   Compensates for global html { font-size: 62.5% } without breaking other pages.
+   Source of Truth: Stitch Template (1rem = 16px scale).
+   ========================================================================== */
+
+.homepage-stitch,
+.footer-stitch {
   --font-headline: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .homepage-stitch h1,
@@ -12,22 +22,554 @@
 .homepage-stitch h4,
 .homepage-stitch h5,
 .homepage-stitch h6,
-.homepage-stitch .font-headline {
+.homepage-stitch .font-headline,
+.footer-stitch h1,
+.footer-stitch h2,
+.footer-stitch h3,
+.footer-stitch h4,
+.footer-stitch h5,
+.footer-stitch h6,
+.footer-stitch .font-headline {
   font-family: var(--font-headline);
 }
 
-.homepage-stitch .no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.homepage-stitch .no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* --------------------------------------------------------------------------
+   1. Scoped Typography Scale
+   -------------------------------------------------------------------------- */
+.homepage-stitch .text-xs,
+.footer-stitch .text-xs {
+  font-size: 12px !important;
+  line-height: 18px !important;
 }
 
+.homepage-stitch .text-sm,
+.footer-stitch .text-sm {
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
+.homepage-stitch .text-base,
+.footer-stitch .text-base {
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+
+.homepage-stitch .text-lg,
+.footer-stitch .text-lg {
+  font-size: 18px !important;
+  line-height: 28px !important;
+}
+
+.homepage-stitch .text-xl,
+.footer-stitch .text-xl {
+  font-size: 20px !important;
+  line-height: 28px !important;
+}
+
+.homepage-stitch .text-2xl,
+.footer-stitch .text-2xl {
+  font-size: 24px !important;
+  line-height: 32px !important;
+}
+
+.homepage-stitch .text-3xl,
+.footer-stitch .text-3xl {
+  font-size: 30px !important;
+  line-height: 36px !important;
+}
+
+.homepage-stitch .text-4xl,
+.footer-stitch .text-4xl {
+  font-size: 36px !important;
+  line-height: 40px !important;
+}
+
+.homepage-stitch .text-5xl,
+.footer-stitch .text-5xl {
+  font-size: 48px !important;
+  line-height: 1 !important;
+}
+
+/* Responsive Font Sizes */
+@media (min-width: 640px) {
+  .homepage-stitch .sm\:text-3xl,
+  .footer-stitch .sm\:text-3xl {
+    font-size: 30px !important;
+    line-height: 36px !important;
+  }
+  .homepage-stitch .sm\:text-4xl,
+  .footer-stitch .sm\:text-4xl {
+    font-size: 36px !important;
+    line-height: 40px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .homepage-stitch .md\:text-4xl,
+  .footer-stitch .md\:text-4xl {
+    font-size: 36px !important;
+    line-height: 40px !important;
+  }
+  .homepage-stitch .md\:text-5xl,
+  .footer-stitch .md\:text-5xl {
+    font-size: 48px !important;
+    line-height: 1 !important;
+  }
+  .homepage-stitch .md\:text-\[54px\],
+  .footer-stitch .md\:text-\[54px\] {
+    font-size: 54px !important;
+    line-height: 60px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Scoped Heights & Dimensions (Buttons, Form Controls & Icons)
+   -------------------------------------------------------------------------- */
+.homepage-stitch .h-12,
+.footer-stitch .h-12 {
+  height: 48px !important;
+}
+
+.homepage-stitch .h-11,
+.footer-stitch .h-11 {
+  height: 44px !important;
+}
+
+.homepage-stitch .h-10,
+.footer-stitch .h-10 {
+  height: 40px !important;
+}
+
+.homepage-stitch .w-10,
+.footer-stitch .w-10 {
+  width: 40px !important;
+}
+
+.homepage-stitch .h-9,
+.footer-stitch .h-9 {
+  height: 36px !important;
+}
+
+.homepage-stitch .w-9,
+.footer-stitch .w-9 {
+  width: 36px !important;
+}
+
+.homepage-stitch .h-8,
+.footer-stitch .h-8 {
+  height: 32px !important;
+}
+
+.homepage-stitch .w-8,
+.footer-stitch .w-8 {
+  width: 32px !important;
+}
+
+.homepage-stitch .h-7,
+.footer-stitch .h-7 {
+  height: 28px !important;
+}
+
+.homepage-stitch .w-7,
+.footer-stitch .w-7 {
+  width: 28px !important;
+}
+
+.homepage-stitch .h-6,
+.footer-stitch .h-6 {
+  height: 24px !important;
+}
+
+.homepage-stitch .w-6,
+.footer-stitch .w-6 {
+  width: 24px !important;
+}
+
+.homepage-stitch .h-5,
+.footer-stitch .h-5 {
+  height: 20px !important;
+}
+
+.homepage-stitch .w-5,
+.footer-stitch .w-5 {
+  width: 20px !important;
+}
+
+.homepage-stitch .h-4,
+.footer-stitch .h-4 {
+  height: 16px !important;
+}
+
+.homepage-stitch .w-4,
+.footer-stitch .w-4 {
+  width: 16px !important;
+}
+
+.homepage-stitch .h-3\.5,
+.footer-stitch .h-3\.5 {
+  height: 14px !important;
+}
+
+.homepage-stitch .w-3\.5,
+.footer-stitch .w-3\.5 {
+  width: 14px !important;
+}
+
+.homepage-stitch .min-h-\[46px\],
+.footer-stitch .min-h-\[46px\] {
+  min-height: 48px !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Scoped Paddings
+   -------------------------------------------------------------------------- */
+.homepage-stitch .p-6,
+.footer-stitch .p-6 {
+  padding: 24px !important;
+}
+
+.homepage-stitch .p-5,
+.footer-stitch .p-5 {
+  padding: 20px !important;
+}
+
+.homepage-stitch .p-4,
+.footer-stitch .p-4 {
+  padding: 16px !important;
+}
+
+.homepage-stitch .p-3,
+.footer-stitch .p-3 {
+  padding: 12px !important;
+}
+
+.homepage-stitch.pt-16,
+.homepage-stitch .pt-16,
+.footer-stitch.pt-16,
+.footer-stitch .pt-16 {
+  padding-top: 64px !important;
+}
+
+.homepage-stitch.pt-12,
+.homepage-stitch .pt-12,
+.footer-stitch.pt-12,
+.footer-stitch .pt-12 {
+  padding-top: 48px !important;
+}
+
+.homepage-stitch.pt-8,
+.homepage-stitch .pt-8,
+.footer-stitch.pt-8,
+.footer-stitch .pt-8 {
+  padding-top: 32px !important;
+}
+
+.homepage-stitch.pb-8,
+.homepage-stitch .pb-8,
+.footer-stitch.pb-8,
+.footer-stitch .pb-8 {
+  padding-bottom: 32px !important;
+}
+
+.homepage-stitch.pb-10,
+.homepage-stitch .pb-10,
+.footer-stitch.pb-10,
+.footer-stitch .pb-10 {
+  padding-bottom: 40px !important;
+}
+
+.homepage-stitch .px-6,
+.footer-stitch .px-6 {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+.homepage-stitch .px-5,
+.footer-stitch .px-5 {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.homepage-stitch .px-4,
+.footer-stitch .px-4 {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+.homepage-stitch .px-3\.5,
+.footer-stitch .px-3\.5 {
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+}
+
+.homepage-stitch .px-3,
+.footer-stitch .px-3 {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+.homepage-stitch .px-2\.5,
+.footer-stitch .px-2\.5 {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.homepage-stitch .px-2,
+.footer-stitch .px-2 {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+
+.homepage-stitch .py-3,
+.footer-stitch .py-3 {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+.homepage-stitch .py-2\.5,
+.footer-stitch .py-2\.5 {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.homepage-stitch .py-2,
+.footer-stitch .py-2 {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.homepage-stitch .py-1\.5,
+.footer-stitch .py-1\.5 {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+.homepage-stitch .py-1,
+.footer-stitch .py-1 {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+@media (min-width: 768px) {
+  .homepage-stitch .md\:p-10,
+  .footer-stitch .md\:p-10 {
+    padding: 40px !important;
+  }
+  .homepage-stitch .md\:px-6,
+  .footer-stitch .md\:px-6 {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Scoped Margins & Spacing
+   -------------------------------------------------------------------------- */
+.homepage-stitch.mt-16,
+.homepage-stitch .mt-16,
+.footer-stitch.mt-16,
+.footer-stitch .mt-16 {
+  margin-top: 64px !important;
+}
+
+.homepage-stitch .mb-16,
+.footer-stitch .mb-16 {
+  margin-bottom: 64px !important;
+}
+
+.homepage-stitch .mb-12,
+.footer-stitch .mb-12 {
+  margin-bottom: 48px !important;
+}
+
+.homepage-stitch .mb-10,
+.footer-stitch .mb-10 {
+  margin-bottom: 40px !important;
+}
+
+.homepage-stitch .mb-8,
+.footer-stitch .mb-8 {
+  margin-bottom: 32px !important;
+}
+
+.homepage-stitch .mb-6,
+.footer-stitch .mb-6 {
+  margin-bottom: 24px !important;
+}
+
+.homepage-stitch .mb-4,
+.footer-stitch .mb-4 {
+  margin-bottom: 16px !important;
+}
+
+.homepage-stitch .mb-3,
+.footer-stitch .mb-3 {
+  margin-bottom: 12px !important;
+}
+
+.homepage-stitch .mb-2,
+.footer-stitch .mb-2 {
+  margin-bottom: 8px !important;
+}
+
+.homepage-stitch .py-14,
+.footer-stitch .py-14 {
+  padding-top: 56px !important;
+  padding-bottom: 56px !important;
+}
+
+.homepage-stitch .py-12,
+.footer-stitch .py-12 {
+  padding-top: 48px !important;
+  padding-bottom: 48px !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Scoped Gaps
+   -------------------------------------------------------------------------- */
+.homepage-stitch .gap-8,
+.footer-stitch .gap-8 {
+  gap: 32px !important;
+}
+
+.homepage-stitch .gap-6,
+.footer-stitch .gap-6 {
+  gap: 24px !important;
+}
+
+.homepage-stitch .gap-5,
+.footer-stitch .gap-5 {
+  gap: 20px !important;
+}
+
+.homepage-stitch .gap-4,
+.footer-stitch .gap-4 {
+  gap: 16px !important;
+}
+
+.homepage-stitch .gap-3,
+.footer-stitch .gap-3 {
+  gap: 12px !important;
+}
+
+.homepage-stitch .gap-2\.5,
+.footer-stitch .gap-2\.5 {
+  gap: 10px !important;
+}
+
+.homepage-stitch .gap-2,
+.footer-stitch .gap-2 {
+  gap: 8px !important;
+}
+
+.homepage-stitch .gap-1\.5,
+.footer-stitch .gap-1\.5 {
+  gap: 6px !important;
+}
+
+.homepage-stitch .gap-1,
+.footer-stitch .gap-1 {
+  gap: 4px !important;
+}
+
+@media (min-width: 768px) {
+  .homepage-stitch .md\:gap-4,
+  .footer-stitch .md\:gap-4 {
+    gap: 16px !important;
+  }
+  .homepage-stitch .md\:gap-6,
+  .footer-stitch .md\:gap-6 {
+    gap: 24px !important;
+  }
+  .homepage-stitch .md\:gap-8,
+  .footer-stitch .md\:gap-8 {
+    gap: 32px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5b. Scoped Space-Y Stack Utilities
+   -------------------------------------------------------------------------- */
+.homepage-stitch .space-y-1 > :not([hidden]) ~ :not([hidden]),
+.footer-stitch .space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 4px !important;
+}
+
+.homepage-stitch .space-y-1\.5 > :not([hidden]) ~ :not([hidden]),
+.footer-stitch .space-y-1\.5 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 6px !important;
+}
+
+.homepage-stitch .space-y-2 > :not([hidden]) ~ :not([hidden]),
+.footer-stitch .space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 8px !important;
+}
+
+.homepage-stitch .space-y-2\.5 > :not([hidden]) ~ :not([hidden]),
+.footer-stitch .space-y-2\.5 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 10px !important;
+}
+
+.homepage-stitch .space-y-3 > :not([hidden]) ~ :not([hidden]),
+.footer-stitch .space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 12px !important;
+}
+
+.homepage-stitch .space-y-4 > :not([hidden]) ~ :not([hidden]),
+.footer-stitch .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 16px !important;
+}
+
+.homepage-stitch .space-y-6 > :not([hidden]) ~ :not([hidden]),
+.footer-stitch .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 24px !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Scoped Border Radii
+   -------------------------------------------------------------------------- */
+.homepage-stitch .rounded-2xl,
+.footer-stitch .rounded-2xl {
+  border-radius: 16px !important;
+}
+
+.homepage-stitch .rounded-xl,
+.footer-stitch .rounded-xl {
+  border-radius: 12px !important;
+}
+
+.homepage-stitch .rounded-lg,
+.footer-stitch .rounded-lg {
+  border-radius: 8px !important;
+}
+
+.homepage-stitch .rounded-md,
+.footer-stitch .rounded-md {
+  border-radius: 6px !important;
+}
+
+.homepage-stitch .rounded-full,
+.footer-stitch .rounded-full {
+  border-radius: 9999px !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. Top Ranking Typography & Utilities
+   -------------------------------------------------------------------------- */
 .homepage-stitch .stroke-text-red {
-  -webkit-text-stroke: 2px #E50914;
+  -webkit-text-stroke: 2.5px #E50914;
 }
 
 .homepage-stitch .stroke-text-white {
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.4);
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.45);
+}
+
+.homepage-stitch .no-scrollbar::-webkit-scrollbar,
+.footer-stitch .no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.homepage-stitch .no-scrollbar,
+.footer-stitch .no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
