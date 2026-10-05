@@ -83,13 +83,11 @@ const SeatPage = () => {
   if (loading) {
     return <HashLoader cssOverride={override} color="#eb3656" />
   }
-  useEffect(() => {
-    if (isError) {
-      toast.error('Lịch chiếu hiện tại không có sẵn hoặc ghế không tồn tại', {
-        position: 'top-right'
-      })
-    }
-  }, [isError])
+  if (isError) {
+    toast.error('Lịch chiếu hiện tại không có sẵn hoặc ghế không tồn tại', {
+      position: 'top-right'
+    })
+  }
 
   const updateSeatStatus = (
     seat: SeatUserList,
