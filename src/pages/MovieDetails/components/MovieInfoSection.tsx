@@ -305,6 +305,7 @@ export const MovieInfoSection: React.FC = () => {
 
     // Grouping
     const cinemaMap = new Map<string, CinemaGroup>()
+    const flatDim = (dataMovie.showTimeDimension || []).flat()
 
     filteredShowtimes.forEach((st: any) => {
       totalCount++
@@ -384,8 +385,15 @@ export const MovieInfoSection: React.FC = () => {
         group.rooms.push(room)
       }
 
+      // Match with showTimeDimension to get the real MongoDB _id
+      const matchedShowtime = flatDim.find((d: any) => {
+        const dRoomId = d.screenRoomId?._id || d.screenRoomId
+        return String(dRoomId) === String(rId) && d.timeFrom === st.timeFrom
+      })
+      const realShowtimeId = matchedShowtime?._id || st._id || st.id || ""
+
       room.showtimes.push({
-        _id: st._id,
+        _id: realShowtimeId,
         timeFrom: st.timeFrom,
         timeTo: st.timeTo,
         date: st.date,
