@@ -84,7 +84,7 @@ function TicketSummary() {
     queryClient.invalidateQueries({ queryKey: [PAYMENT] })
   }
 
-  const { mutate } = usePaymentMuatation(paymentMethod._id, onSuccessPayment)
+  const { mutate } = usePaymentMuatation(paymentMethod?._id || 0, onSuccessPayment)
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
@@ -99,12 +99,12 @@ function TicketSummary() {
     seat: seatStorage = [],
     foods: foodsTicket = [],
     ticketAmount = 0
-  } = ticket
+  } = ticket || {}
 
   const totalFoodPrice =
     foods && foods.length != 0
       ? filterFood(foods)
-      : ticket.foods
+      : ticket?.foods
         ? filterFood(ticket.foods)
         : 0
   const totalSeatPrice =
