@@ -1,5 +1,5 @@
-import { HashLink } from 'react-router-hash-link';
-import { Film, Phone, Mail, MapPin, Facebook, Linkedin, Youtube } from 'lucide-react';
+﻿import { HashLink } from 'react-router-hash-link';
+import { Film, Phone, Mail, MapPin, Facebook, Youtube } from 'lucide-react';
 import '../pages/Home/home-stitch.css';
 
 export const Footer = () => {
@@ -25,11 +25,11 @@ export const Footer = () => {
             <div className="space-y-2 text-xs text-[#A8A8B3] pt-1">
               <p className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#ffb4aa] shrink-0" />
-                <span>Hotline: <strong className="text-white">0363 128 962</strong></span>
+                <span>Hotline: <strong className="text-white">0938302558</strong></span>
               </p>
               <p className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#ffb4aa] shrink-0" />
-                <span>Email: <strong className="text-white">Dc@gmail.com</strong></span>
+                <span>Email: <strong className="text-white">tranan.2399@gmail.com</strong></span>
               </p>
               <p className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#ffb4aa] shrink-0" />
@@ -40,22 +40,13 @@ export const Footer = () => {
             {/* Social Links */}
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://www.facebook.com/longthien.thanthien/?locale=vi_VN"
+                href="https://www.facebook.com/Otis2309"
                 target="_blank"
                 rel="noreferrer"
                 className="w-8 h-8 rounded-lg bg-[#1F1F24] hover:bg-[#E50914] flex items-center justify-center text-[#A8A8B3] hover:text-white transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/%C4%91%E1%BB%A9c-nguy%E1%BB%85n-88a2072a2/"
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-[#1F1F24] hover:bg-[#0077B5] flex items-center justify-center text-[#A8A8B3] hover:text-white transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
               </a>
               <a
                 href="https://www.youtube.com/channel/UCrcEXy2YurzCrKN9Ys9XLhA"
