@@ -1,4 +1,12 @@
-﻿/* Stitch Dream Cinema Design Tokens & Styles */
+﻿@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+   MOVIE DETAILS & SHOWTIMES STITCH DESIGN SYSTEM TOKENS
+   Scoped strictly to .stitch-movie-details-scope.
+   Compensates for global html { font-size: 62.5% } (1rem = 10px).
+   Ensures 100% parity with Stitch Design (1rem = 16px scale).
+   ========================================================================== */
+
 .stitch-movie-details-scope {
   --stitch-bg-lowest: #0B0B0F;
   --stitch-bg-low: #14141A;
@@ -17,14 +25,624 @@
   --stitch-text-muted: #6B6B78;
   --stitch-border: rgba(255, 255, 255, 0.08);
   --stitch-border-hover: rgba(255, 255, 255, 0.18);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  --font-headline: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
   color: #FFFFFF;
   background-color: #0B0B0F;
   min-height: 100vh;
 }
 
+.stitch-movie-details-scope h1,
+.stitch-movie-details-scope h2,
+.stitch-movie-details-scope h3,
+.stitch-movie-details-scope h4,
+.stitch-movie-details-scope h5,
+.stitch-movie-details-scope h6,
 .stitch-movie-details-scope .font-headline {
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: var(--font-headline) !important;
+}
+
+/* --------------------------------------------------------------------------
+   1. Scoped Typography Scale (16px base)
+   -------------------------------------------------------------------------- */
+.stitch-movie-details-scope .text-xs {
+  font-size: 12px !important;
+  line-height: 18px !important;
+}
+
+.stitch-movie-details-scope .text-sm {
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
+.stitch-movie-details-scope .text-base {
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+
+.stitch-movie-details-scope .text-lg {
+  font-size: 18px !important;
+  line-height: 28px !important;
+}
+
+.stitch-movie-details-scope .text-xl {
+  font-size: 20px !important;
+  line-height: 28px !important;
+}
+
+.stitch-movie-details-scope .text-2xl {
+  font-size: 24px !important;
+  line-height: 32px !important;
+}
+
+.stitch-movie-details-scope .text-3xl {
+  font-size: 30px !important;
+  line-height: 36px !important;
+}
+
+.stitch-movie-details-scope .text-4xl {
+  font-size: 36px !important;
+  line-height: 42px !important;
+}
+
+.stitch-movie-details-scope .text-5xl {
+  font-size: 48px !important;
+  line-height: 1 !important;
+}
+
+/* Arbitrary Font Sizes */
+.stitch-movie-details-scope .text-\[10px\] {
+  font-size: 10px !important;
+  line-height: 14px !important;
+}
+
+.stitch-movie-details-scope .text-\[11px\] {
+  font-size: 11px !important;
+  line-height: 16px !important;
+}
+
+.stitch-movie-details-scope .text-\[12px\] {
+  font-size: 12px !important;
+  line-height: 16px !important;
+}
+
+.stitch-movie-details-scope .text-\[13px\] {
+  font-size: 13px !important;
+  line-height: 18px !important;
+}
+
+.stitch-movie-details-scope .text-\[14px\] {
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
+.stitch-movie-details-scope .text-\[16px\] {
+  font-size: 16px !important;
+  line-height: 22px !important;
+}
+
+.stitch-movie-details-scope .text-\[18px\] {
+  font-size: 18px !important;
+  line-height: 26px !important;
+}
+
+.stitch-movie-details-scope .text-\[20px\] {
+  font-size: 20px !important;
+  line-height: 28px !important;
+}
+
+.stitch-movie-details-scope .text-\[22px\] {
+  font-size: 22px !important;
+  line-height: 30px !important;
+}
+
+.stitch-movie-details-scope .text-\[24px\] {
+  font-size: 24px !important;
+  line-height: 32px !important;
+}
+
+.stitch-movie-details-scope .text-\[32px\] {
+  font-size: 32px !important;
+  line-height: 38px !important;
+}
+
+.stitch-movie-details-scope .text-\[36px\] {
+  font-size: 36px !important;
+  line-height: 42px !important;
+}
+
+/* Responsive Font Sizes */
+@media (min-width: 640px) {
+  .stitch-movie-details-scope .sm\:text-xs {
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+  .stitch-movie-details-scope .sm\:text-sm {
+    font-size: 14px !important;
+    line-height: 20px !important;
+  }
+  .stitch-movie-details-scope .sm\:text-base {
+    font-size: 16px !important;
+    line-height: 24px !important;
+  }
+  .stitch-movie-details-scope .sm\:text-lg {
+    font-size: 18px !important;
+    line-height: 28px !important;
+  }
+  .stitch-movie-details-scope .sm\:text-xl {
+    font-size: 20px !important;
+    line-height: 28px !important;
+  }
+  .stitch-movie-details-scope .sm\:text-2xl {
+    font-size: 24px !important;
+    line-height: 32px !important;
+  }
+  .stitch-movie-details-scope .sm\:text-3xl {
+    font-size: 30px !important;
+    line-height: 36px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .stitch-movie-details-scope .md\:text-sm {
+    font-size: 14px !important;
+    line-height: 20px !important;
+  }
+  .stitch-movie-details-scope .md\:text-base {
+    font-size: 16px !important;
+    line-height: 24px !important;
+  }
+  .stitch-movie-details-scope .md\:text-lg {
+    font-size: 18px !important;
+    line-height: 28px !important;
+  }
+  .stitch-movie-details-scope .md\:text-xl {
+    font-size: 20px !important;
+    line-height: 28px !important;
+  }
+  .stitch-movie-details-scope .md\:text-2xl {
+    font-size: 24px !important;
+    line-height: 32px !important;
+  }
+  .stitch-movie-details-scope .md\:text-3xl {
+    font-size: 30px !important;
+    line-height: 36px !important;
+  }
+  .stitch-movie-details-scope .md\:text-4xl {
+    font-size: 36px !important;
+    line-height: 42px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Scoped Heights & Dimensions (Buttons, Inputs, Icons)
+   -------------------------------------------------------------------------- */
+.stitch-movie-details-scope .h-14 {
+  height: 56px !important;
+}
+
+.stitch-movie-details-scope .w-14 {
+  width: 56px !important;
+}
+
+.stitch-movie-details-scope .h-12 {
+  height: 48px !important;
+}
+
+.stitch-movie-details-scope .h-11 {
+  height: 44px !important;
+}
+
+.stitch-movie-details-scope .h-10 {
+  height: 40px !important;
+}
+
+.stitch-movie-details-scope .w-10 {
+  width: 40px !important;
+}
+
+.stitch-movie-details-scope .h-9 {
+  height: 36px !important;
+}
+
+.stitch-movie-details-scope .w-9 {
+  width: 36px !important;
+}
+
+.stitch-movie-details-scope .h-8 {
+  height: 32px !important;
+}
+
+.stitch-movie-details-scope .w-8 {
+  width: 32px !important;
+}
+
+.stitch-movie-details-scope .h-6 {
+  height: 24px !important;
+}
+
+.stitch-movie-details-scope .w-6 {
+  width: 24px !important;
+}
+
+.stitch-movie-details-scope .h-5 {
+  height: 20px !important;
+}
+
+.stitch-movie-details-scope .w-5 {
+  width: 20px !important;
+}
+
+.stitch-movie-details-scope .h-4 {
+  height: 16px !important;
+}
+
+.stitch-movie-details-scope .w-4 {
+  width: 16px !important;
+}
+
+.stitch-movie-details-scope .h-3\.5 {
+  height: 14px !important;
+}
+
+.stitch-movie-details-scope .w-3\.5 {
+  width: 14px !important;
+}
+
+.stitch-movie-details-scope .h-3 {
+  height: 12px !important;
+}
+
+.stitch-movie-details-scope .w-3 {
+  width: 12px !important;
+}
+
+@media (min-width: 640px) {
+  .stitch-movie-details-scope .sm\:h-12 {
+    height: 48px !important;
+  }
+  .stitch-movie-details-scope .sm\:h-6 {
+    height: 24px !important;
+  }
+  .stitch-movie-details-scope .sm\:w-6 {
+    width: 24px !important;
+  }
+  .stitch-movie-details-scope .sm\:w-8 {
+    width: 32px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Scoped Paddings & Gaps
+   -------------------------------------------------------------------------- */
+.stitch-movie-details-scope .p-8 {
+  padding: 32px !important;
+}
+
+.stitch-movie-details-scope .p-6 {
+  padding: 24px !important;
+}
+
+.stitch-movie-details-scope .p-5 {
+  padding: 20px !important;
+}
+
+.stitch-movie-details-scope .p-4 {
+  padding: 16px !important;
+}
+
+.stitch-movie-details-scope .p-3\.5 {
+  padding: 14px !important;
+}
+
+.stitch-movie-details-scope .p-3 {
+  padding: 12px !important;
+}
+
+.stitch-movie-details-scope .p-2\.5 {
+  padding: 10px !important;
+}
+
+.stitch-movie-details-scope .p-2 {
+  padding: 8px !important;
+}
+
+.stitch-movie-details-scope .p-1\.5 {
+  padding: 6px !important;
+}
+
+.stitch-movie-details-scope .p-1 {
+  padding: 4px !important;
+}
+
+.stitch-movie-details-scope .px-6 {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+.stitch-movie-details-scope .px-5 {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.stitch-movie-details-scope .px-4 {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+.stitch-movie-details-scope .px-3\.5 {
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+}
+
+.stitch-movie-details-scope .px-3 {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+.stitch-movie-details-scope .px-2\.5 {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.stitch-movie-details-scope .px-2 {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+
+.stitch-movie-details-scope .px-1\.5 {
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+}
+
+.stitch-movie-details-scope .py-8 {
+  padding-top: 32px !important;
+  padding-bottom: 32px !important;
+}
+
+.stitch-movie-details-scope .py-6 {
+  padding-top: 24px !important;
+  padding-bottom: 24px !important;
+}
+
+.stitch-movie-details-scope .py-5 {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
+
+.stitch-movie-details-scope .py-4 {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+}
+
+.stitch-movie-details-scope .py-3\.5 {
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+}
+
+.stitch-movie-details-scope .py-3 {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+.stitch-movie-details-scope .py-2\.5 {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.stitch-movie-details-scope .py-2 {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.stitch-movie-details-scope .py-1\.5 {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+.stitch-movie-details-scope .py-1 {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+.stitch-movie-details-scope .py-0\.5 {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}
+
+.stitch-movie-details-scope .pt-10 {
+  padding-top: 40px !important;
+}
+
+.stitch-movie-details-scope .pb-16 {
+  padding-bottom: 64px !important;
+}
+
+.stitch-movie-details-scope .pb-20 {
+  padding-bottom: 80px !important;
+}
+
+@media (min-width: 640px) {
+  .stitch-movie-details-scope .sm\:p-6 {
+    padding: 24px !important;
+  }
+  .stitch-movie-details-scope .sm\:p-5 {
+    padding: 20px !important;
+  }
+  .stitch-movie-details-scope .sm\:px-6 {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  .stitch-movie-details-scope .sm\:py-6 {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .stitch-movie-details-scope .md\:p-6 {
+    padding: 24px !important;
+  }
+  .stitch-movie-details-scope .md\:px-6 {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  .stitch-movie-details-scope .md\:py-8 {
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+  .stitch-movie-details-scope .md\:py-3\.5 {
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+  }
+}
+
+/* Gaps */
+.stitch-movie-details-scope .gap-6 {
+  gap: 24px !important;
+}
+
+.stitch-movie-details-scope .gap-5 {
+  gap: 20px !important;
+}
+
+.stitch-movie-details-scope .gap-4 {
+  gap: 16px !important;
+}
+
+.stitch-movie-details-scope .gap-3\.5 {
+  gap: 14px !important;
+}
+
+.stitch-movie-details-scope .gap-3 {
+  gap: 12px !important;
+}
+
+.stitch-movie-details-scope .gap-2\.5 {
+  gap: 10px !important;
+}
+
+.stitch-movie-details-scope .gap-2 {
+  gap: 8px !important;
+}
+
+.stitch-movie-details-scope .gap-1\.5 {
+  gap: 6px !important;
+}
+
+.stitch-movie-details-scope .gap-1 {
+  gap: 4px !important;
+}
+
+@media (min-width: 640px) {
+  .stitch-movie-details-scope .sm\:gap-4 {
+    gap: 16px !important;
+  }
+  .stitch-movie-details-scope .sm\:gap-3 {
+    gap: 12px !important;
+  }
+}
+
+/* Rounded Corners */
+.stitch-movie-details-scope .rounded-2xl {
+  border-radius: 16px !important;
+}
+
+.stitch-movie-details-scope .rounded-xl {
+  border-radius: 12px !important;
+}
+
+.stitch-movie-details-scope .rounded-lg {
+  border-radius: 8px !important;
+}
+
+.stitch-movie-details-scope .rounded-md {
+  border-radius: 6px !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Movie Details Domain-Specific Components Sizing
+   -------------------------------------------------------------------------- */
+/* Poster Sizing */
+.stitch-movie-details-scope .w-28 {
+  width: 112px !important;
+  min-width: 112px !important;
+}
+
+.stitch-movie-details-scope .w-32 {
+  width: 128px !important;
+  min-width: 128px !important;
+}
+
+.stitch-movie-details-scope .w-36 {
+  width: 144px !important;
+  min-width: 144px !important;
+}
+
+@media (min-width: 640px) {
+  .stitch-movie-details-scope .sm\:w-32 {
+    width: 128px !important;
+    min-width: 128px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .stitch-movie-details-scope .md\:w-36 {
+    width: 144px !important;
+    min-width: 144px !important;
+  }
+}
+
+/* Showtime Slot Cards */
+.showtime-slot-card {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 14px 10px !important;
+  min-height: 92px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.showtime-slot-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(229, 9, 20, 0.45) !important;
+  box-shadow: 0 4px 18px rgba(229, 9, 20, 0.2) !important;
+}
+
+.showtime-slot-card.active-slot {
+  background-color: #252530 !important;
+  border-color: #E50914 !important;
+  box-shadow: 0 0 22px rgba(229, 9, 20, 0.4) !important;
+}
+
+/* Date Chip Buttons in Carousel */
+.date-chip-btn {
+  min-width: 82px !important;
+  height: 58px !important;
+  padding: 8px 14px !important;
+  border-radius: 12px !important;
+  transition: all 0.2s ease;
+}
+
+.date-chip-btn:hover:not(.active-date) {
+  background-color: #252530 !important;
+  color: #FFFFFF !important;
+}
+
+/* Cinema Cards */
+.stitch-cinema-card {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stitch-cinema-card:hover {
+  border-color: rgba(255, 255, 255, 0.16) !important;
 }
 
 /* Custom Scrollbar for horizontal strips */
@@ -34,35 +652,4 @@
 .stitch-scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-/* Card Glow Micro-interactions */
-.showtime-slot-card {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-.showtime-slot-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(229, 9, 20, 0.4);
-  box-shadow: 0 4px 16px rgba(229, 9, 20, 0.15);
-}
-.showtime-slot-card.active-slot {
-  background-color: #252530 !important;
-  border-color: #E50914 !important;
-  box-shadow: 0 0 20px rgba(229, 9, 20, 0.35) !important;
-}
-
-.date-chip-btn {
-  transition: all 0.2s ease;
-}
-.date-chip-btn:hover:not(.active-date) {
-  background-color: #252530;
-  color: #FFFFFF;
-}
-
-.stitch-cinema-card {
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.stitch-cinema-card:hover {
-  border-color: rgba(255, 255, 255, 0.15);
 }
