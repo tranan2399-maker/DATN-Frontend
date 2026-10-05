@@ -1,0 +1,68 @@
+﻿/* Stitch Dream Cinema Design Tokens & Styles */
+.stitch-movie-details-scope {
+  --stitch-bg-lowest: #0B0B0F;
+  --stitch-bg-low: #14141A;
+  --stitch-bg-surface: #1C1C24;
+  --stitch-bg-high: #252530;
+  --stitch-bg-highest: #2E2E3C;
+  --stitch-bg-bright: #383848;
+  --stitch-primary: #E50914;
+  --stitch-primary-hover: #FF2D3A;
+  --stitch-primary-active: #B20710;
+  --stitch-primary-glow: rgba(229, 9, 20, 0.35);
+  --stitch-secondary: #F5B301;
+  --stitch-tertiary: #38BDF8;
+  --stitch-text-primary: #FFFFFF;
+  --stitch-text-secondary: #A8A8B3;
+  --stitch-text-muted: #6B6B78;
+  --stitch-border: rgba(255, 255, 255, 0.08);
+  --stitch-border-hover: rgba(255, 255, 255, 0.18);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #FFFFFF;
+  background-color: #0B0B0F;
+  min-height: 100vh;
+}
+
+.stitch-movie-details-scope .font-headline {
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* Custom Scrollbar for horizontal strips */
+.stitch-scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.stitch-scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Card Glow Micro-interactions */
+.showtime-slot-card {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.showtime-slot-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(229, 9, 20, 0.4);
+  box-shadow: 0 4px 16px rgba(229, 9, 20, 0.15);
+}
+.showtime-slot-card.active-slot {
+  background-color: #252530 !important;
+  border-color: #E50914 !important;
+  box-shadow: 0 0 20px rgba(229, 9, 20, 0.35) !important;
+}
+
+.date-chip-btn {
+  transition: all 0.2s ease;
+}
+.date-chip-btn:hover:not(.active-date) {
+  background-color: #252530;
+  color: #FFFFFF;
+}
+
+.stitch-cinema-card {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.stitch-cinema-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
