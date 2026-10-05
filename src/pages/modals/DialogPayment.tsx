@@ -10,10 +10,11 @@ function DialogPayment({
   dataShowtime
 }: {
   isLoading: boolean
-  dataShowtime: { status: string; destroy: boolean }
+  dataShowtime: any
 }) {
   useEffect(() => {
-    if (dataShowtime.status == FULL_SCHEDULE || dataShowtime.destroy) {
+    const showtime = Array.isArray(dataShowtime) ? dataShowtime[0] : dataShowtime;
+    if (showtime?.status == FULL_SCHEDULE || showtime?.destroy) {
       toast.error('Showtime is not available', {
         position: 'top-right'
       })
@@ -22,7 +23,7 @@ function DialogPayment({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button disabled={dataShowtime.status == FULL_SCHEDULE || dataShowtime.destroy} className="ticket-btn disabled:opacity-70 bg-primary-movieColor rounded-full text-primary-locationMovie disabled:cursor-not-allowed">
+        <button disabled={Boolean(Array.isArray(dataShowtime) ? dataShowtime[0]?.status == FULL_SCHEDULE || dataShowtime[0]?.destroy : dataShowtime?.status == FULL_SCHEDULE || dataShowtime?.destroy)} className="ticket-btn disabled:opacity-70 bg-primary-movieColor rounded-full text-primary-locationMovie disabled:cursor-not-allowed">
           {isLoading ? <Loader className="animate-spin" /> : 'purchase ticket'}
         </button>
       </DialogTrigger>

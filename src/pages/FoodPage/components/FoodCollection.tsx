@@ -26,7 +26,7 @@ function FoodCollection() {
       }
     })
 
-    if (ticket.foods) {
+    if (ticket?.foods) {
       const combiData = [...ticket.foods]
       dispatch(foodsAction.fetchData(combiData))
       return

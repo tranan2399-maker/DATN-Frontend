@@ -105,7 +105,7 @@ function TicketSummary() {
     foods && foods.length != 0
       ? filterFood(foods)
       : ticket?.foods
-        ? filterFood(ticket.foods)
+        ? filterFood(ticket?.foods || [])
         : 0
   const totalSeatPrice =
     seat && seat.length > 0
@@ -121,13 +121,19 @@ function TicketSummary() {
   }
 
   const handlePurchaseSeat = () => {
+    if (!isLogined || !userDetail?.message?._id) {
+      toast.warn('Vui lòng đăng nhập Để tiến hành đặt vé!', {
+        position: 'top-right'
+      })
+      return
+    }
     if (seat.length == 0) {
       toast.error('Vui lòng chọn chỗ ngồi !', {
         position: 'top-right'
       })
       return
     }
-    const showtime = dataShowtime[0]
+    const showtime = dataShowtime?.[0]
     if (!showtime || showtime.status == FULL_SCHEDULE || showtime.destroy) {
       toast.error('Thời gian chiếu không có sẵn', {
         position: 'top-right'

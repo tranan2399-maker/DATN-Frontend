@@ -38,7 +38,7 @@ function UserConfirmPayment() {
                 </div>
 
                 <span className="ms-10 text-2xl flex items-end text-primary-movieColor truncate font-semibold overflow-hidden">
-                  {userDetail.message.name}
+                  {userDetail?.message?.name ?? 'Khách hàng'}
                 </span>
               </div>
 
@@ -52,7 +52,7 @@ function UserConfirmPayment() {
                   </span>
                 </div>
                 <span className="ms-10 text-2xl flex items-end text-primary-movieColor truncate font-semibold overflow-hidden">
-                  {userDetail.message.email}
+                  {userDetail?.message?.email ?? 'Chưa đăng ký email'}
                 </span>
               </div>
             </div>

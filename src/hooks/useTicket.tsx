@@ -28,7 +28,7 @@ function useTicket(
     mutationFn: (newTodo: TicketCreateType) => {
       switch (action) {
         case CREATE_TICKET:
-          if (ticket.ticket_id !== undefined) {
+          if (Boolean(ticket?.ticket_id) && ticket.ticket_id !== '') {
             return updateTicketSeat(newTodo)
           }
           return checkoutTicket(newTodo)

@@ -395,7 +395,7 @@ export const MovieInfoSection: React.FC = () => {
       room.showtimes.push({
         _id: realShowtimeId,
         timeFrom: st.timeFrom,
-        timeTo: st.timeTo,
+        timeTo: st.timeTo || matchedShowtime?.timeTo || st.timeFrom || '',
         date: st.date,
         screenRoomId: {
           _id: rId,
@@ -455,7 +455,7 @@ export const MovieInfoSection: React.FC = () => {
       id_showtime: {
         _id: selectedShowtime._id,
         timeFrom: selectedShowtime.timeFrom,
-        timeTo: selectedShowtime.timeTo
+        timeTo: selectedShowtime.timeTo || selectedShowtime.timeFrom || ''
       },
       cinema_name:
         selectedShowtime.cinemaId.name ||

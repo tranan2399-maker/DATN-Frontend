@@ -14,8 +14,8 @@ function ModalPayMentMB() {
   const navigate = useNavigate()
   const my_bank = { BANK_ID: 'MB', ACCOUNT_NUMBER: 9830908070605 }
   const [ticket] = useLocalStorage<TicketType>('ticket')
-  const infoTicket = ticket.name_movie + getNameSeat(ticket.seat, '') + '1'
-  const QR = `https://img.vietqr.io/image/${my_bank.BANK_ID}-${my_bank.ACCOUNT_NUMBER}-compact2.png?amount=${ticket.total}&addInfo=${infoTicket}&accountName=envidi`
+  const infoTicket = (ticket?.name_movie || '') + getNameSeat(ticket?.seat, '') + '1'
+  const QR = `https://img.vietqr.io/image/${my_bank.BANK_ID}-${my_bank.ACCOUNT_NUMBER}-compact2.png?amount=${ticket?.total || 0}&addInfo=${infoTicket}&accountName=envidi`
 
   useEffect(() => {
     let count = 0
@@ -67,7 +67,7 @@ function ModalPayMentMB() {
               <div className="flex  items-end">
                 <span className="flex text-2xl items-end">Thông tin phim</span>
               </div>
-              <span className="text-xl">{ticket.name_movie}</span>
+              <span className="text-xl">{ticket?.name_movie}</span>
             </div>
             <div className="timePay blockPayment text-2xl">
               <div className="flex  items-end">

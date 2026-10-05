@@ -74,7 +74,8 @@ const ticketInitialState: TicketState = {
   ticket: {
     id_showtime: {
       _id: '',
-      timeFrom: ''
+      timeFrom: '',
+      timeTo: ''
     },
     id_movie: {
       _id: '',
