@@ -20,7 +20,6 @@ const MobileNav = ({ menuState, menuStyle, setMenuState }: MobileNav) => {
     setShowSignIn((pre) => !pre)
   }
   const toggleShowForm = () => {
-    console.log(showSignup)
     setShowSignup((pre) => !pre)
   }
   return (

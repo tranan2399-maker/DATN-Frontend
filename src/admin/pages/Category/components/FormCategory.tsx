@@ -85,9 +85,7 @@ const FormCategory = ({ typeForm }: FormCategoryProps) => {
           products: categoryData?.products || []
         }
         const response = await mutate(bodyData)
-        console.log('res', response)
       } catch (error) {
-        console.log('error', error)
       }
     }
   })

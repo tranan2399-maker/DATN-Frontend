@@ -9,7 +9,6 @@ export const getAllRooms = async () => {
 export const getAllRoomsDestroy = async () => {
   try {
     const result = await instance.get('/screen/destroy')
-    console.log(result)
     return result.data.datas.docs
   } catch (error) {
     console.error('Error while performing soft delete:', error)
