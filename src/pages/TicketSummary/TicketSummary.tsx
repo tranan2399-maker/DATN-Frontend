@@ -121,12 +121,8 @@ function TicketSummary({ isStitched = false }: { isStitched?: boolean }) {
   }
 
   const handlePurchaseSeat = () => {
-    if (!isLogined || !userDetail?.message?._id) {
-      toast.warn('Vui lòng đăng nhập Để tiến hành đặt vé!', {
-        position: 'top-right'
-      })
-      return
-    }
+    // Cho phép đặt vé không cần đăng nhập (khách vãng lai / guest)
+    const guestUserId = userDetail?.message?._id || '65de035201e3eea140eaa0b8'
     if (seat.length == 0) {
       toast.error('Vui lòng chọn chỗ ngồi !', {
         position: 'top-right'
@@ -145,7 +141,7 @@ function TicketSummary({ isStitched = false }: { isStitched?: boolean }) {
       ...ticket,
       seat: [...seat],
       total,
-      userId: userDetail?.message?._id || '1',
+      userId: userDetail?.message?._id || '65de035201e3eea140eaa0b8',
       ticketAmount: seat.filter((s) => s.selected).length
     })
     const foodObject = filterData(
@@ -167,7 +163,7 @@ function TicketSummary({ isStitched = false }: { isStitched?: boolean }) {
       seatId: mapData(seat),
       foods: foodObject,
       showtimeId: ticket.id_showtime,
-      userId: userDetail?.message?._id || '1',
+      userId: userDetail?.message?._id || '65de035201e3eea140eaa0b8',
       movieId: ticket.id_movie,
       screenRoomId: ticket.hall_id,
       cinemaId: ticket.cinemaId

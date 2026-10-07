@@ -233,13 +233,11 @@ function App() {
               <Route
                 path="/purchase"
                 element={
-                  <ProtectedAuthorized>
-                    <ProtectedRoutePage>
-                      <Suspense fallback={<PageLoader />}>
-                        <PurchaseLayout />
-                      </Suspense>
-                    </ProtectedRoutePage>
-                  </ProtectedAuthorized>
+                  <ProtectedRoutePage>
+                    <Suspense fallback={<PageLoader />}>
+                      <PurchaseLayout />
+                    </Suspense>
+                  </ProtectedRoutePage>
                 }
               >
                 <Route

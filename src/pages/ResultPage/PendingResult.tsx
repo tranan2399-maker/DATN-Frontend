@@ -86,7 +86,7 @@ function PendingResult() {
       typeBank: typeBank,
       typePayment,
       amount,
-      userId: ticket.userId,
+      userId: ticket.userId || '65de035201e3eea140eaa0b8',
       ticket_id: ticket.ticket_id,
       priceId: {
         _id: ticket?.price_id,

@@ -501,11 +501,7 @@ export const MovieInfoSection: React.FC = () => {
 
     dispatch(ticketAction.addProperties(ticketObject))
     setTicket(ticketObject)
-    if (!isLogined) {
-      toast.warn('Vui lòng đăng nhập tài khoản để vào phòng chiếu chọn ghế!', {
-        position: 'top-right'
-      })
-    }
+    // Cho phép đặt vé không cần đăng nhập
     navigate('/purchase/seat')
   }
 
