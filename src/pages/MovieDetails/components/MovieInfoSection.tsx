@@ -118,6 +118,14 @@ export const MovieInfoSection: React.FC = () => {
     mutateWatchlist({ movieId, userId: userDetail.message._id })
   }
 
+  // Safe helper to extract local YYYY-MM-DD from Date
+  const getLocalDateStr = (d: Date = new Date()): string => {
+    const year = d.getFullYear()
+    const month = String(d.getMonth() + 1).padStart(2, '0')
+    const day = String(d.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
+
   // Safe helper to extract YYYY-MM-DD from timeFrom or date
   const parseDateToStr = (timeFromOrDate: string | Date): string => {
     if (!timeFromOrDate) return ''
@@ -135,7 +143,7 @@ export const MovieInfoSection: React.FC = () => {
     try {
       const d = new Date(timeFromOrDate)
       if (!isNaN(d.getTime())) {
-        return d.toISOString().slice(0, 10)
+        return getLocalDateStr(d)
       }
     } catch {
       // fallback
@@ -143,52 +151,92 @@ export const MovieInfoSection: React.FC = () => {
     return ''
   }
 
-  // Count showtimes per date
+  // Helper kiểm tra suất chiếu có phải là của tương lai (hoặc hôm nay) không
+  // TUYỆT ĐỐI BỎ CÁC NGÀY TRƯỚC (PAST DATES)
+  const isFutureOrTodayShowtime = (st: any): boolean => {
+    const dStr = parseDateToStr(st.timeFrom || st.date)
+    if (!dStr) return false
+    const todayStr = getLocalDateStr(new Date())
+
+    // 1. Nếu ngày chiếu nhỏ hơn hôm nay -> BỎ HOÀN TOÀN
+    if (dStr < todayStr) return false
+
+    // 2. Nếu là ngày hôm nay, kiểm tra xem giờ chiếu đã trôi qua quá 15 phút chưa
+    if (dStr === todayStr && st.timeFrom) {
+      try {
+        let stTime: Date | null = null
+        if (typeof st.timeFrom === 'string' && st.timeFrom.includes(' ')) {
+          const [datePart, timePart] = st.timeFrom.trim().split(' ')
+          const [d, m, y] = datePart.split('-')
+          const [hh, mm] = timePart.split(':')
+          stTime = new Date(Number(y), Number(m) - 1, Number(d), Number(hh), Number(mm))
+        } else {
+          stTime = new Date(st.timeFrom)
+        }
+        if (stTime && !isNaN(stTime.getTime())) {
+          const now = new Date()
+          if (stTime.getTime() < now.getTime() - 15 * 60 * 1000) {
+            return false // Suất chiếu đã trôi qua trong ngày hôm nay
+          }
+        }
+      } catch {
+        // fallback
+      }
+    }
+
+    return true
+  }
+
+  // Count showtimes per date (CHỈ ĐẾM CÁC SUẤT CHIẾU TƯƠNG LAI)
   const showtimeCountsByDate = useMemo(() => {
     const map = new Map<string, number>()
     const showtimes = dataMovie?.showTimeCol || []
     showtimes.forEach((st: any) => {
-      const dStr = parseDateToStr(st.timeFrom || st.date)
-      if (dStr) {
-        map.set(dStr, (map.get(dStr) || 0) + 1)
+      if (isFutureOrTodayShowtime(st)) {
+        const dStr = parseDateToStr(st.timeFrom || st.date)
+        if (dStr) {
+          map.set(dStr, (map.get(dStr) || 0) + 1)
+        }
       }
     })
     return map
   }, [dataMovie?.showTimeCol])
 
-  // Generate Date Items list
+  // Generate Date Items list: CHỈ LẤY CÁC NGÀY TỪ HÔM NAY TRỞ ĐI (TƯƠNG LAI)
   const dateOptions: DateItem[] = useMemo(() => {
     const datesMap = new Map<string, DateItem>()
     const dayNames = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7']
     const today = new Date()
-    const todayStr = today.toISOString().slice(0, 10)
+    const todayStr = getLocalDateStr(today)
 
-    // First: All dates from showTimeCol that actually have showtimes
+    // 1. Chỉ thêm các ngày từ showTimeCol NẾU LÀ NGÀY TƯƠNG LAI (dStr >= todayStr)
     const showtimes = dataMovie?.showTimeCol || []
     showtimes.forEach((st: any) => {
-      const dStr = parseDateToStr(st.timeFrom || st.date)
-      if (dStr && !datesMap.has(dStr)) {
-        const dObj = new Date(dStr + 'T00:00:00')
-        const isToday = dStr === todayStr
-        const dayOfWeek = isToday ? 'Hôm nay' : dayNames[dObj.getDay()]
-        const count = showtimeCountsByDate.get(dStr) || 0
-        datesMap.set(dStr, {
-          date: dObj,
-          dateStr: dStr,
-          dayOfWeek,
-          dayNum: String(dObj.getDate()).padStart(2, '0'),
-          monthNum: String(dObj.getMonth() + 1).padStart(2, '0'),
-          hasShowtimes: count > 0,
-          showtimesCount: count
-        })
+      if (isFutureOrTodayShowtime(st)) {
+        const dStr = parseDateToStr(st.timeFrom || st.date)
+        if (dStr && dStr >= todayStr && !datesMap.has(dStr)) {
+          const dObj = new Date(dStr + 'T00:00:00')
+          const isToday = dStr === todayStr
+          const dayOfWeek = isToday ? 'Hôm nay' : dayNames[dObj.getDay()]
+          const count = showtimeCountsByDate.get(dStr) || 0
+          datesMap.set(dStr, {
+            date: dObj,
+            dateStr: dStr,
+            dayOfWeek,
+            dayNum: String(dObj.getDate()).padStart(2, '0'),
+            monthNum: String(dObj.getMonth() + 1).padStart(2, '0'),
+            hasShowtimes: count > 0,
+            showtimesCount: count
+          })
+        }
       }
     })
 
-    // Next: Also add upcoming 7 days from today
-    for (let i = 0; i < 7; i++) {
+    // 2. Thêm 14 ngày tiếp theo từ hôm nay (upcoming 14 days)
+    for (let i = 0; i < 14; i++) {
       const nextDate = new Date()
       nextDate.setDate(today.getDate() + i)
-      const dStr = nextDate.toISOString().slice(0, 10)
+      const dStr = getLocalDateStr(nextDate)
       if (!datesMap.has(dStr)) {
         const isToday = i === 0
         const isTomorrow = i === 1
@@ -206,19 +254,21 @@ export const MovieInfoSection: React.FC = () => {
       }
     }
 
-    // Sort: dates that have showtimes come first if they are upcoming or historical, else chronological
+    // Sắp xếp các ngày theo thứ tự thời gian tăng dần bắt đầu từ hôm nay
     const all = Array.from(datesMap.values())
     return all.sort((a, b) => a.dateStr.localeCompare(b.dateStr))
   }, [dataMovie?.showTimeCol, showtimeCountsByDate])
 
-  // Automatically select the first date that HAS showtimes!
+  // Tự động chọn ngày đầu tiên có suất chiếu tương lai, hoặc mặc định là Hôm nay
   useEffect(() => {
     if (dateOptions.length > 0) {
-      // Find the first date with showtimes
-      const dateWithShow = dateOptions.find((d) => d.hasShowtimes)
+      const todayStr = getLocalDateStr(new Date())
+      // Tìm ngày tương lai có suất chiếu
+      const dateWithShow = dateOptions.find((d) => d.hasShowtimes && d.dateStr >= todayStr)
       if (dateWithShow) {
         setSelectedDate(dateWithShow.dateStr)
-      } else if (!selectedDate) {
+      } else if (!selectedDate || selectedDate < todayStr) {
+        // Mặc định chọn Hôm nay
         setSelectedDate(dateOptions[0].dateStr)
       }
     }
@@ -235,14 +285,15 @@ export const MovieInfoSection: React.FC = () => {
     }
   }, [dateOptions, selectedDate])
 
-  // Extract Cinema Options from showTimeCol
+  // Extract Cinema Options from showTimeCol (CHỈ LẤY CÁC RẠP CÓ SUẤT CHIẾU TƯƠNG LAI)
   const cinemaOptions = useMemo(() => {
     const list: Array<{ id: string; name: string }> = []
     const seen = new Set<string>()
     const showtimes = dataMovie?.showTimeCol || []
 
     showtimes.forEach((st: any) => {
-      const cid = st.cinemaId?._id || st.screenRoomId?.CinemaId?._id
+      if (isFutureOrTodayShowtime(st)) {
+        const cid = st.cinemaId?._id || st.screenRoomId?.CinemaId?._id
       const cname =
         st.cinemaId?.name ||
         st.cinemaId?.CinemaName ||
@@ -252,6 +303,7 @@ export const MovieInfoSection: React.FC = () => {
       if (cid && cname && !seen.has(cid)) {
         seen.add(cid)
         list.push({ id: cid, name: cname })
+      }
       }
     })
     return list
@@ -267,8 +319,11 @@ export const MovieInfoSection: React.FC = () => {
     const priceIdDefault = dataMovie.moviePriceCol?.[0]?._id || ''
     let totalCount = 0
 
-    // Filter showtimes
+    // Filter showtimes (CHỈ LẤY CÁC SUẤT CHIẾU TƯƠNG LAI, KHÔNG LẤY CÁC NGÀY TRƯỚC)
     const filteredShowtimes = dataMovie.showTimeCol.filter((st: any) => {
+      // 0. Bỏ tất cả các suất chiếu thuộc ngày trước hoặc đã trôi qua
+      if (!isFutureOrTodayShowtime(st)) return false
+
       // 1. Date filter
       const stDateStr = parseDateToStr(st.timeFrom || st.date)
       if (stDateStr !== selectedDate) return false
