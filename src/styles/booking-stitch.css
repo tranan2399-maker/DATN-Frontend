@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+   BOOKING FLOW STITCH DESIGN SYSTEM TOKENS
+   Scoped strictly to .booking-stitch to preserve global html { font-size: 62.5% }.
+   Consumes the same tokens, typography & color palette as home-stitch.css.
+   ========================================================================== */
+
+.booking-stitch {
+  --font-headline: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: #e4e1e7;
+  background-color: #08080B;
+}
+
+.booking-stitch h1,
+.booking-stitch h2,
+.booking-stitch h3,
+.booking-stitch h4,
+.booking-stitch h5,
+.booking-stitch h6,
+.booking-stitch .font-headline {
+  font-family: var(--font-headline);
+}
+
+/* --------------------------------------------------------------------------
+   1. Scoped Typography Scale (1rem = 16px equivalence inside .booking-stitch)
+   -------------------------------------------------------------------------- */
+.booking-stitch .text-xs {
+  font-size: 12px !important;
+  line-height: 16px !important;
+}
+
+.booking-stitch .text-sm {
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
+.booking-stitch .text-base {
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+
+.booking-stitch .text-lg {
+  font-size: 18px !important;
+  line-height: 28px !important;
+}
+
+.booking-stitch .text-xl {
+  font-size: 20px !important;
+  line-height: 28px !important;
+}
+
+.booking-stitch .text-2xl {
+  font-size: 24px !important;
+  line-height: 32px !important;
+}
+
+.booking-stitch .text-3xl {
+  font-size: 30px !important;
+  line-height: 36px !important;
+}
+
+.booking-stitch .text-4xl {
+  font-size: 36px !important;
+  line-height: 40px !important;
+}
+
+.booking-stitch .text-5xl {
+  font-size: 48px !important;
+  line-height: 1 !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Colors & Surfaces
+   -------------------------------------------------------------------------- */
+.booking-stitch {
+  --stitch-bg: #08080B;
+  --stitch-surface: #131317;
+  --stitch-surface-card: #16161C;
+  --stitch-surface-card-hover: #1F1F26;
+  --stitch-primary: #E50914;
+  --stitch-primary-hover: #F40D17;
+  --stitch-gold: #FFD484;
+  --stitch-gold-muted: #F5B300;
+  --stitch-text-muted: #A8A8B3;
+  --stitch-text-subtle: #71717A;
+  --stitch-border: rgba(255, 255, 255, 0.08);
+  --stitch-border-active: rgba(229, 9, 20, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   3. Custom Booking Components Styling
+   -------------------------------------------------------------------------- */
+.booking-stitch .stitch-card {
+  background: var(--stitch-surface);
+  border: 1px solid var(--stitch-border);
+  border-radius: 16px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.booking-stitch .stitch-card-glow {
+  box-shadow: 0 0 24px rgba(229, 9, 20, 0.12);
+}
+
+.booking-stitch .stitch-btn-primary {
+  background-color: var(--stitch-primary);
+  color: #FFFFFF;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(229, 9, 20, 0.35);
+}
+
+.booking-stitch .stitch-btn-primary:hover:not(:disabled) {
+  background-color: var(--stitch-primary-hover);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
+  transform: translateY(-1px);
+}
+
+.booking-stitch .stitch-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}

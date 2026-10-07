@@ -49,7 +49,7 @@ import usePaymentMuatation, {
 } from '@/hooks/usePaymentMuatation'
 import useAllFood from '@/hooks/useAllFood'
 
-function TicketSummary() {
+function TicketSummary({ isStitched = false }: { isStitched?: boolean }) {
   const dispatch = useDispatch()
   const { data: dataFoodApi } = useAllFood()
   const { userDetail } = useContext(ContextMain)
