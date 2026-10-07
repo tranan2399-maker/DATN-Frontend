@@ -1,3 +1,5 @@
+import { CinemaScreenArc } from './components/CinemaScreenArc'
+import { SeatLegendStitch } from './components/SeatLegendStitch'
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react'
@@ -170,48 +172,52 @@ const SeatPage = () => {
   }
 
   return (
-    <div className="flex items-center flex-col">
-      <div className="form-item-heading">Chọn ghế</div>
-      {!loading && (
-        <>
-          <div className="seat-guide-container lg:gap-2 xs:gap-16 xl:max-w-7xl lg:max-w-7xl md:max-w-7xl sm:max-w-5xl  xs:max-w-4xl flex-wrap">
-            <div className="flex items-center">
-              <div className="seat-available-demo lg:w-16 lg:h-16 md:w-18 md:h-18 sm:w-20 sm:h-20"></div>
-              <p className="seat-status-details">Trống</p>
-            </div>
+    <div className="w-full bg-[#131317] border border-white/[0.08] rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl flex flex-col items-center">
+      {/* Heading */}
+      <div className="flex items-center justify-between w-full pb-4 border-b border-white/[0.06] mb-4">
+        <div>
+          <h2 className="text-xl sm:text-2xl font-bold font-headline text-white tracking-wide">
+            Chọn ghế ngồi
+          </h2>
+          <p className="text-xs text-[#A8A8B3] mt-0.5">
+            Vui lòng chọn ghế phù hợp trên sơ đồ phòng chiếu (Tối đa 7 ghế)
+          </p>
+        </div>
+      </div>
 
-            <div className="flex items-center">
-              <div className="seat-selected-demo lg:w-16 lg:h-16 md:w-18 md:h-18 sm:w-20 sm:h-20"></div>
-              <p className="seat-status-details">Đã chọn</p>
-            </div>
-            <div className="flex items-center mx-2">
-              <div className="seat-selected-demo bg-[#db1f1f] lg:w-16 lg:h-16 md:w-18 md:h-18 sm:w-20 sm:h-20"></div>
-              <p className="seat-status-details">VIP</p>
-            </div>
-            <div className="flex items-center">
-              <div className="seat-booked-demo bg-[#fb9f15] lg:w-16 lg:h-16 md:w-18 md:h-18 sm:w-20 sm:h-20"></div>
-              <p className="seat-status-details">Đã đặt</p>
-            </div>
-            <div className="flex items-center">
-              <div className="seat-booked-demo lg:w-16 lg:h-16 md:w-18 md:h-18 sm:w-20 sm:h-20"></div>
-              <p className="seat-status-details">Đã bán</p>
-            </div>
-          </div>
-          <div className="theatre-screen lg:w-[48rem] lg:h-[18rem]  md:h-[15rem] sm:w-[52rem] sm:h-[16rem] ">
-            <div className="screen-1"></div>
-            <div className="screen-2"></div>
-          </div>
-          <div className="theatre-screen-heading">Màn hình</div>
-          <div className="seat-container sm:mr-16 xs:mr-16">
+      {loading && (
+        <div className="py-20 flex flex-col items-center justify-center gap-3">
+          <HashLoader cssOverride={override} color="#E50914" />
+          <p className="text-xs text-[#A8A8B3] animate-pulse">Đang tải sơ đồ phòng chiếu...</p>
+        </div>
+      )}
+
+      {!loading && (
+        <div className="w-full flex flex-col items-center space-y-6">
+          {/* Cinema Screen Arc */}
+          <CinemaScreenArc />
+
+          {/* Seat Legend */}
+          <SeatLegendStitch />
+
+          {/* Scrollable Seat Matrix Container */}
+          <div className="w-full overflow-x-auto pb-4 pt-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
             {allSeat && allSeat.length > 0 && (
-              <RenderSeatLayout
-                seats={allSeat}
-                handleUserSeats={handleUserSeats}
-                handleSeatClick={handleSeatClick}
-              />
+              <div className="min-w-fit mx-auto flex justify-center">
+                <RenderSeatLayout
+                  seats={allSeat}
+                  handleUserSeats={handleUserSeats}
+                  handleSeatClick={handleSeatClick}
+                />
+              </div>
             )}
           </div>
-        </>
+
+          {/* Mobile hint */}
+          <p className="text-[11px] text-[#71717A] text-center md:hidden">
+            👉 Vuốt ngang để xem toàn bộ rạp nếu sơ đồ bị che khuất
+          </p>
+        </div>
       )}
     </div>
   )

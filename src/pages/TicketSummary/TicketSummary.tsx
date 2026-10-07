@@ -1,7 +1,7 @@
 import { TicketType } from '@/store/ticket'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
-import { Armchair, Cookie } from 'lucide-react'
+import { Armchair, Cookie, ArrowRight, Film, X } from 'lucide-react'
 
 import {
   convertAmPm,
@@ -233,7 +233,159 @@ function TicketSummary({ isStitched = false }: { isStitched?: boolean }) {
     }
   }
 
-  return (
+    if (isStitched) {
+    return (
+      <div className="w-full bg-[#131317] border border-white/[0.08] rounded-2xl p-5 md:p-6 shadow-xl sticky top-24 space-y-5">
+        {/* Header Movie Info */}
+        <div className="flex gap-4 pb-4 border-b border-white/[0.06]">
+          {image_movie ? (
+            <img
+              src={image_movie}
+              alt={name_movie}
+              className="w-20 h-28 object-cover rounded-xl shadow-md border border-white/10 shrink-0"
+            />
+          ) : (
+            <div className="w-20 h-28 bg-[#1F1F24] rounded-xl flex items-center justify-center text-[#71717A] shrink-0">
+              <Film className="w-8 h-8" />
+            </div>
+          )}
+
+          <div className="flex-1 min-w-0 space-y-1">
+            <span className="inline-block px-2 py-0.5 rounded-md bg-[#E50914]/15 border border-[#E50914]/30 text-[#ff8080] text-[10px] font-bold uppercase tracking-wider">
+              3D Digital
+            </span>
+            <h3 className="text-base font-bold text-white truncate font-headline leading-tight">
+              {name_movie || 'Chưa chọn phim'}
+            </h3>
+            <p className="text-xs text-[#A8A8B3]">
+              {convertMintuteToHour(duration_movie)}
+            </p>
+            <p className="text-xs text-[#ffd484] font-medium truncate">
+              {cinema_name || 'Dream Cinema'}
+            </p>
+          </div>
+        </div>
+
+        {/* Showtime Details */}
+        <div className="space-y-2.5 text-xs text-[#A8A8B3]">
+          <div className="flex justify-between items-center py-1 border-b border-white/[0.04]">
+            <span className="text-[#71717A]">Phòng chiếu:</span>
+            <span className="font-semibold text-white">{hall_name || '--'}</span>
+          </div>
+          <div className="flex justify-between items-center py-1 border-b border-white/[0.04]">
+            <span className="text-[#71717A]">Suất chiếu:</span>
+            <span className="font-semibold text-white">
+              {time_from ? convertAmPm(getHourAndMinute(time_from)) + ' • ' + convertDayToFormatVN(getDay(time_from)) : '--'}
+            </span>
+          </div>
+          <div className="flex justify-between items-center py-1 border-b border-white/[0.04]">
+            <span className="text-[#71717A]">Số lượng vé:</span>
+            <span className="font-semibold text-white">
+              {seat && seat.length !== 0 ? seat.filter((s) => s.selected).length : ticketAmount || 0} vé
+            </span>
+          </div>
+        </div>
+
+        {/* Selected Seats Chips */}
+        <div>
+          <span className="text-xs text-[#71717A] block mb-2">Ghế đang chọn:</span>
+          {seat && seat.filter((s) => s.selected).length > 0 ? (
+            <div className="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto">
+              {seat.filter((s) => s.selected).map((s) => (
+                <span
+                  key={s._id}
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#E50914] text-white text-xs font-bold shadow-sm"
+                >
+                  {s.name}
+                  <X
+                    className="w-3 h-3 cursor-pointer hover:opacity-80"
+                    onClick={() => {
+                      const updated = seat.map((item) =>
+                        item._id === s._id ? { ...item, selected: false } : item
+                      )
+                      dispatch(ticketAction.addProperties({ seat: updated }))
+                    }}
+                  />
+                </span>
+              ))}
+            </div>
+          ) : (
+            <p className="text-xs text-[#71717A] italic">Chưa chọn ghế nào</p>
+          )}
+        </div>
+
+        {/* Food Items if any */}
+        {foodValid.length > 0 && (
+          <div className="pt-2 border-t border-white/[0.04] space-y-1">
+            <span className="text-xs text-[#71717A] block mb-1">Bắp nước:</span>
+            {foodValid.map((f) => (
+              <div key={f._id} className="flex justify-between text-xs text-[#A8A8B3]">
+                <span>{f.name} x{f.quantity}</span>
+                <span className="text-white font-medium">{formatVND(f.price * f.quantity)}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Grand Total */}
+        <div className="pt-3 border-t border-white/[0.08] flex items-baseline justify-between">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#A8A8B3]">
+            Tổng thanh toán:
+          </span>
+          <span className="text-xl font-bold font-headline text-[#ffd484]">
+            {formatVND(total)}
+          </span>
+        </div>
+
+        {/* Primary Action Button */}
+        {pathname === '/purchase/seat' && (
+          <button
+            type="button"
+            disabled={isPending || (seat ? seat.filter((s) => s.selected).length === 0 : true)}
+            onClick={handlePurchaseSeat}
+            className="w-full py-3.5 px-4 rounded-xl stitch-btn-primary flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-wider"
+          >
+            {isPending ? (
+              <BarLoader color="#FFFFFF" width={80} />
+            ) : (
+              <>
+                <span>Tiếp tục: Chọn bắp nước</span>
+                <ArrowRight className="w-4 h-4" />
+              </>
+            )}
+          </button>
+        )}
+
+        {pathname === '/purchase/food' && (
+          <button
+            type="button"
+            onClick={handlePurchaseFood}
+            className="w-full py-3.5 px-4 rounded-xl stitch-btn-primary flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-wider"
+          >
+            <span>Tiếp tục: Thanh toán</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        )}
+
+        {pathname === '/purchase/payment' && paymentMethod._id !== 3 && (
+          <button
+            type="button"
+            onClick={handlePurchasePayment}
+            className="w-full py-3.5 px-4 rounded-xl stitch-btn-primary flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-wider"
+          >
+            <span>Thanh toán vé</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        )}
+
+        {pathname === '/purchase/payment' && paymentMethod._id === 3 && (
+          <DialogPayment isLoading={isLoading} dataShowtime={dataShowtime} />
+        )}
+      </div>
+    )
+  }
+
+return (
     <div className="purchase-section-right ticket_summary ">
       <h2 className="ticket-container-heading">Tổng hợp vé</h2>
 
