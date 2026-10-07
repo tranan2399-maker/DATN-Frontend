@@ -1,93 +1,78 @@
-import { Link } from 'react-router-dom'
 import { AnimatedPage } from '@/components/AnimatedPage'
-import {
-  Armchair,
-  CalendarDays,
-  Check,
-  CreditCard,
-  Popcorn
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { CheckCircle2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { DigitalTicketStitch } from './DigitalTicketStitch'
+import '@/styles/booking-stitch.css'
 
 function ResultPage() {
   const [isNavi, setIsNavi] = useState(false)
+  const [ticketData, setTicketData] = useState<any>(null)
+
   useEffect(() => {
+    // Read last completed ticket details if available
+    try {
+      const saved = localStorage.getItem('lastCompletedTicket')
+      if (saved) {
+        setTicketData(JSON.parse(saved))
+      }
+    } catch (e) {
+      console.error(e)
+    }
+
     return () => {
       setIsNavi(true)
-      // localStorage.removeItem('resultToken')
       if (isNavi) {
         localStorage.removeItem('resultToken')
+        localStorage.removeItem('lastCompletedTicket')
       }
     }
   }, [isNavi])
 
   return (
     <AnimatedPage>
-      <section className="section-purchase mt-20">
-        <div className="result-container container max-w-[132rem] md:px-16 xl:px-5 ">
-          <div className="purchase-section-left w-full">
-            <div className="purchase-heading mt-20"></div>
-            <div className="flex w-full bg-background-secondary px-7  ps-10 py-10 rounded-xl lg:flex-row  xs:flex-col-reverse">
-              <div className="flex flex-col lg:basis-7/12 xs:basis-full">
-                <h3 className="text-5xl">Thanh toán thành công </h3>
-                <h6 className="text-2xl  mt-4 mb-10">
-                  Cảm ơn bạn đã chọn DreamCinema. Thông tin vé đã được gửi cho email của bạn. Chúc bạn xem phim vui vẻ
-                </h6>
-                <div className="stepper-wrapper  xs:ms-[-9vw] sm:ms-[-10vw] md:ms-[-11vw] lg:ms-[-6vw] ">
-                  <div className="stepper-item completed  ">
-                    <div className="step-counter lg:w-16 lg:h-16 xs:w-12 xs:h-12">
-                      <Check size={16} />
-                    </div>
-                    <div className="step-name">
-                      <CalendarDays />
-                    </div>
-                  </div>
-                  <div className="stepper-item completed ">
-                    <div className="step-counter lg:w-16 lg:h-16 xs:w-12 xs:h-12">
-                      <Check size={16} />
-                    </div>
-                    <div className="step-name">
-                      <Armchair />
-                    </div>
-                  </div>
-                  <div className="stepper-item completed ">
-                    <div className="step-counter lg:w-16 lg:h-16 xs:w-12 xs:h-12">
-                      <Check size={16} />
-                    </div>
-                    <div className="step-name">
-                      <Popcorn />
-                    </div>
-                  </div>
-                  <div className="stepper-item completed ">
-                    <div className="step-counter lg:w-16 lg:h-16 xs:w-12 xs:h-12">
-                      <Check size={16} />
-                    </div>
-                    <div className="step-name">
-                      <CreditCard />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex mt-4 gap-7">
-                  <Button className="bg-[#4bb543] text-white text-3xl px-8 py-4 rounded-2xl">
-                    <Link to={'/profile/bill'}>Sang trang lịch sử mua</Link>
-                  </Button>
-                  <Button className="border-[#4bb543] text-[#4bb543] border text-3xl px-8 py-4 rounded-2xl">
-                    <Link to={'/'}>Quay về trang chủ</Link>
-                  </Button>
-                </div>
-              </div>
-              <div className="flex lg:basis-5/12 xs:basis-full">
-                <img
-                  className="object-cover"
-                  src="/Images/customers/successfull-payment.png"
-                  alt=""
-                />
-              </div>
+      <div className="booking-stitch min-h-[80vh] flex flex-col items-center justify-center py-12 px-4 sm:px-6">
+        <div className="w-full max-w-3xl flex flex-col items-center space-y-8">
+          {/* Success Banner */}
+          <div className="text-center space-y-2">
+            <div className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto shadow-[0_0_24px_rgba(16,185,129,0.3)]">
+              <CheckCircle2 className="w-9 h-9" />
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-headline text-white tracking-wide">
+              Thanh Toán Thành Công!
+            </h2>
+            <p className="text-xs sm:text-sm text-[#A8A8B3] max-w-md mx-auto leading-relaxed">
+              Cảm ơn bạn đã lựa chọn Dream Cinema. Vé điện tử đã sẵn sàng để quét tại rạp.
+            </p>
+          </div>
+
+          {/* Stepper with all 4 steps completed */}
+          <div className="flex items-center justify-center gap-2 sm:gap-4 text-xs font-semibold text-emerald-400">
+            <div className="flex items-center gap-1.5">
+              <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px] font-bold">✓</span>
+              <span>Suất chiếu</span>
+            </div>
+            <span className="text-white/20">→</span>
+            <div className="flex items-center gap-1.5">
+              <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px] font-bold">✓</span>
+              <span>Ghế ngồi</span>
+            </div>
+            <span className="text-white/20">→</span>
+            <div className="flex items-center gap-1.5">
+              <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px] font-bold">✓</span>
+              <span>Bắp nước</span>
+            </div>
+            <span className="text-white/20">→</span>
+            <div className="flex items-center gap-1.5">
+              <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px] font-bold">✓</span>
+              <span>Vé điện tử</span>
             </div>
           </div>
+
+          {/* Perforated Digital Ticket */}
+          <DigitalTicketStitch ticketData={ticketData} />
         </div>
-      </section>
+      </div>
     </AnimatedPage>
   )
 }
