@@ -1,9 +1,7 @@
-import { Label } from '@/components/ui/label'
 import { RadioGroupItem } from '@/components/ui/radio-group'
-import { getCurrentDay } from '@/utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { PaymentSelected, TicketState, ticketAction } from '@/store/ticket'
-
+import { Check, QrCode, Smartphone, CreditCard } from 'lucide-react'
 
 export interface PaymentItemType {
   method: {
@@ -18,54 +16,99 @@ export interface PaymentItemType {
   cardSelected: number
 }
 
-function PaymentItem({
-  method
-}: PaymentItemType) {
+const METHOD_DETAILS: Record<number, { title: string; desc: string; badge?: string; icon: any }> = {
+  1: {
+    title: 'VNPAY-QR / Thẻ ATM & Quốc tế',
+    desc: 'Hỗ trợ quét QR trên 40 ứng dụng ngân hàng, Visa, Master, JCB',
+    badge: 'Phổ biến',
+    icon: CreditCard
+  },
+  2: {
+    title: 'Ví Điện Tử MoMo',
+    desc: 'Thanh toán tức thì 1 chạm qua ứng dụng Ví MoMo',
+    icon: Smartphone
+  },
+  3: {
+    title: 'VietQR MBBank (Tự động)',
+    desc: 'Quét mã VietQR chuyển khoản tức thì, xác nhận trong 5 giây',
+    badge: 'Khuyên dùng',
+    icon: QrCode
+  }
+}
+
+function PaymentItem({ method }: PaymentItemType) {
   const dispatch = useDispatch()
   const { paymentMethod: cardSelected } = useSelector(
     (state: { ticket: TicketState }) => state.ticket.ticket
   )
-  const selectedCss = (classCss: string) => {
-    return cardSelected?._id == method._id ? classCss : ''
+  const isSelected = cardSelected?._id === method._id
+  const details = METHOD_DETAILS[method._id] || {
+    title: method.name,
+    desc: 'Phương thức thanh toán an toàn qua cổng trực tuyến',
+    icon: CreditCard
   }
+  const IconComponent = details.icon
+
   const choosePaymentMethod = (data: PaymentSelected) => {
     dispatch(ticketAction.choosePayment(data))
   }
+
   return (
     <div
-      className="flex items-center xl:basis-1/3 lg:basis-1/2"
-      // onClick={() => setCardSelected(method._id)}
-      onClick={() =>
-        choosePaymentMethod({ _id: method._id, name: method.name })
-      }
+      onClick={() => choosePaymentMethod({ _id: method._id, name: method.name })}
+      className={`relative rounded-2xl p-5 cursor-pointer transition-all duration-200 border ${
+        isSelected
+          ? 'bg-[#221518] border-[#E50914] shadow-[0_0_16px_rgba(229,9,20,0.3)] ring-1 ring-[#E50914]'
+          : 'bg-[#18181E] border-white/[0.08] hover:border-white/20 hover:bg-[#1E1E24]'
+      }`}
     >
-      <Label
-        htmlFor={method.value}
-        className={` overflow-hidden w-full flex flex-col bg-background-secondary rounded-lg py-6 px-5  border-2  border-border-calendarBorder ${selectedCss('border-2 border-primary-movieColor')} `}
-      >
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center gap-3">
-            <div className="bg-white px-3 py-2 overflow-hidden rounded-lg">
-              <img src={method.image} alt="" className="object-cover w-16" />
-            </div>
-            <span
-              className={`text-2xl ${selectedCss('text-primary-movieColor')}`}
-            >
-              ****{method.cardNumber}
-            </span>
+      {/* Badge if any */}
+      {details.badge && (
+        <span className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md ${
+          isSelected
+            ? 'bg-[#E50914] text-white'
+            : 'bg-white/10 text-[#ffd484]'
+        }`}>
+          {details.badge}
+        </span>
+      )}
+
+      <div className="flex items-start gap-4">
+        {/* Method Logo in crisp container */}
+        <div className="w-14 h-14 rounded-xl bg-white p-2 flex items-center justify-center shrink-0 shadow-md">
+          <img src={method.image} alt={method.name} className="w-full h-full object-contain" />
+        </div>
+
+        <div className="flex-1 min-w-0 pr-8">
+          <div className="flex items-center gap-2">
+            <h4 className="text-sm font-bold text-white font-headline">
+              {details.title}
+            </h4>
           </div>
-          <RadioGroupItem
-            value={method.value}
-            id={method.value}
-            className="h-8 w-8 text-primary-movieColor border-primary-movieColor"
-          />
+          <p className="text-xs text-[#A8A8B3] mt-1 leading-relaxed">
+            {details.desc}
+          </p>
+
+          <div className="flex items-center gap-2 mt-3 text-[11px] text-[#71717A]">
+            <IconComponent className="w-3.5 h-3.5 text-[#A8A8B3]" />
+            <span>Xác nhận vé điện tử ngay sau thanh toán</span>
+          </div>
         </div>
-        <div
-          className={`text-2xl ms-[56px] mt-2 text-primary-infoMovie  ${selectedCss('text-primary-movieColor')}`}
-        >
-          {getCurrentDay()}
+
+        {/* Custom Radio indicator */}
+        <div className="shrink-0 pt-0.5">
+          <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${
+            isSelected
+              ? 'border-[#E50914] bg-[#E50914] text-white'
+              : 'border-white/20 bg-transparent'
+          }`}>
+            {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+          </div>
+          <div className="hidden">
+            <RadioGroupItem value={method.value} id={method.value} />
+          </div>
         </div>
-      </Label>
+      </div>
     </div>
   )
 }

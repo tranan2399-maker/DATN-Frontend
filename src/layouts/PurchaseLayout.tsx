@@ -9,7 +9,8 @@ import '@/styles/booking-stitch.css'
 // Unmigrated routes render the exact legacy layout and styling.
 const STITCH_OPT_IN_ROUTES: string[] = [
   '/purchase/seat',
-  '/purchase/food'
+  '/purchase/food',
+  '/purchase/payment'
 ]
 
 function PurchaseLayout() {

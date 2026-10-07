@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
-import { Loader } from 'lucide-react'
+import { Loader2, ArrowRight } from 'lucide-react'
 import ModalPayMentMB from './ModalPayMentMB'
 import { useEffect } from 'react'
 import { FULL_SCHEDULE } from '@/utils/constant'
@@ -13,21 +13,36 @@ function DialogPayment({
   dataShowtime: any
 }) {
   useEffect(() => {
-    const showtime = Array.isArray(dataShowtime) ? dataShowtime[0] : dataShowtime;
-    if (showtime?.status == FULL_SCHEDULE || showtime?.destroy) {
-      toast.error('Showtime is not available', {
+    const showtime = Array.isArray(dataShowtime) ? dataShowtime[0] : dataShowtime
+    if (showtime?.status === FULL_SCHEDULE || showtime?.destroy) {
+      toast.error('Suất chiếu không còn khả dụng', {
         position: 'top-right'
       })
     }
   }, [dataShowtime])
+
+  const showtime = Array.isArray(dataShowtime) ? dataShowtime[0] : dataShowtime
+  const isDisabled = Boolean(showtime?.status === FULL_SCHEDULE || showtime?.destroy)
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button disabled={Boolean(Array.isArray(dataShowtime) ? dataShowtime[0]?.status == FULL_SCHEDULE || dataShowtime[0]?.destroy : dataShowtime?.status == FULL_SCHEDULE || dataShowtime?.destroy)} className="ticket-btn disabled:opacity-70 bg-primary-movieColor rounded-full text-primary-locationMovie disabled:cursor-not-allowed">
-          {isLoading ? <Loader className="animate-spin" /> : 'purchase ticket'}
+        <button
+          type="button"
+          disabled={isDisabled || isLoading}
+          className="w-full py-3.5 px-4 rounded-xl stitch-btn-primary flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isLoading ? (
+            <Loader2 className="w-4 h-4 animate-spin text-white" />
+          ) : (
+            <>
+              <span>Thanh toán VietQR MBBank</span>
+              <ArrowRight className="w-4 h-4" />
+            </>
+          )}
         </button>
       </DialogTrigger>
-      <DialogContent className="xs:max-w-[425px] md:max-w-[625px] sm:max-w-[555px] p-0 overflow-hidden bg-white">
+      <DialogContent className="max-w-3xl p-0 overflow-hidden bg-transparent border-0 shadow-2xl">
         <ModalPayMentMB />
       </DialogContent>
     </Dialog>
