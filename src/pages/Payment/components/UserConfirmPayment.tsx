@@ -24,9 +24,11 @@ function UserConfirmPayment() {
           </div>
         </div>
 
-        <div>
-          <UserDialogConfirm />
-        </div>
+        {userDetail?.message && (
+          <div>
+            <UserDialogConfirm />
+          </div>
+        )}
       </div>
 
       {/* Grid info */}

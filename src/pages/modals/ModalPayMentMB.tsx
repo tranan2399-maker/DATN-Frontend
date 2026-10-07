@@ -25,6 +25,7 @@ function ModalPayMentMB() {
 
     const checkPayment = async () => {
       try {
+        if (!ticket?.total) return;
         const result = await checkPaymentMBBank(ticket.total, infoTicket)
         if (result) {
           clearInterval(idInterval)

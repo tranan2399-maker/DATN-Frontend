@@ -64,10 +64,10 @@ function UserDialogConfirm() {
     }
   })
   const defaultValues = {
-    name: userDetail.message.name,
-    email: userDetail.message.email,
-    address: userDetail.message?.address || '',
-    mobile: userDetail.message?.mobile || 0
+    name: userDetail?.message?.name || '',
+    email: userDetail?.message?.email || '',
+    address: userDetail?.message?.address || '',
+    mobile: userDetail?.message?.mobile || ''
   }
   const form = useForm({
     resolver: joiResolver(profileFormSchema),

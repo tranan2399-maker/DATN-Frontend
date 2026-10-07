@@ -216,13 +216,13 @@ function TicketSummary({ isStitched = false }: { isStitched?: boolean }) {
       navigate('/purchase/food')
       return
     }
-    if (paymentMethod._id == 1) {
+    if ((paymentMethod?._id ?? 1) == 1) {
       mutate({
         amount: ticket.total,
         bankCode: 'NCB',
         language: 'vn'
       } as MutatePaymentType)
-    } else if (paymentMethod._id == 2) {
+    } else if ((paymentMethod?._id ?? 1) == 2) {
       mutate({
         amount: ticket.total
       } as MutatePaymentType)
@@ -363,7 +363,7 @@ function TicketSummary({ isStitched = false }: { isStitched?: boolean }) {
           </button>
         )}
 
-        {pathname === '/purchase/payment' && paymentMethod._id !== 3 && (
+        {pathname === '/purchase/payment' && (paymentMethod?._id ?? 1) !== 3 && (
           <button
             type="button"
             onClick={handlePurchasePayment}
@@ -374,7 +374,7 @@ function TicketSummary({ isStitched = false }: { isStitched?: boolean }) {
           </button>
         )}
 
-        {pathname === '/purchase/payment' && paymentMethod._id === 3 && (
+        {pathname === '/purchase/payment' && (paymentMethod?._id ?? 1) === 3 && (
           <DialogPayment isLoading={isLoading} dataShowtime={dataShowtime} />
         )}
       </div>
@@ -487,7 +487,7 @@ return (
             {isPending ? <BarLoader color="#e6e6e8" /> : 'Chọn ghế'}
           </button>
         )}
-        {pathname == '/purchase/payment' && paymentMethod._id !== 3 && (
+        {pathname == '/purchase/payment' && (paymentMethod?._id ?? 1) !== 3 && (
           <button
             className="ticket-btn disabled:opacity-70 disabled:cursor-not-allowed"
             onClick={handlePurchasePayment}
@@ -495,7 +495,7 @@ return (
             Thanh toán vé
           </button>
         )}
-        {pathname == '/purchase/payment' && paymentMethod._id == 3 && (
+        {pathname == '/purchase/payment' && (paymentMethod?._id ?? 1) == 3 && (
           <DialogPayment isLoading={isLoading} dataShowtime={dataShowtime} />
         )}
       </div>
