@@ -24,7 +24,7 @@ const MobileNav = ({ menuState, menuStyle, setMenuState }: MobileNav) => {
   }
   return (
     <>
-      <div className="mobile-nav-menu z-50" style={menuState ? menuStyle : {}}>
+      <div className="mobile-nav-menu z-[60]" style={menuState ? menuStyle : {}}>
         <button
           className="btn-menu-close"
           onClick={() => setMenuState((state: boolean) => !state)}

@@ -135,7 +135,7 @@ header {
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 11;
+  z-index: 50; /* ensure header stays above hero banner (z-20) and sticky filters (z-30) */
   background-color: transparent;
   background-image: linear-gradient(to bottom, #171a28, transparent 70%);
 }
