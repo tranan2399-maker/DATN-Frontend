@@ -193,17 +193,19 @@ function TicketSummary({ isStitched = false }: { isStitched?: boolean }) {
     navigate('/purchase/payment')
   }
   const handlePurchasePayment = () => {
-    const showtime = dataShowtime[0]
-    if (showtime.status == FULL_SCHEDULE || showtime.destroy) {
+    const showtime = Array.isArray(dataShowtime) ? dataShowtime[0] : dataShowtime
+    if (showtime && (showtime.status == FULL_SCHEDULE || showtime.destroy)) {
       toast.error('Thời gian chiếu không có sẵn', {
         position: 'top-right'
       })
       return
     }
-    const allFood = dataFoodApi.map((food: { _id: string }) => food._id)
-    const chooseFood = foodValid.map((food: { _id: string }) => food._id)
+    const allFood = Array.isArray(dataFoodApi) ? dataFoodApi.map((food: { _id: string }) => food._id) : []
+    const chooseFood = (foodValid || []).map((food: { _id: string }) => food._id)
 
-    if (!allFood.includes(...chooseFood)) {
+    // Chỉ kiểm tra khi khách hàng CÓ CHỌN đồ ăn (chooseFood.length > 0)
+    // Tránh lỗi khi khách không chọn bắp nước hoặc bỏ qua bắp nước
+    if (chooseFood.length > 0 && allFood.length > 0 && !chooseFood.every((id: string) => allFood.includes(id))) {
       toast.error('Đồ ăn không tồn tại', {
         position: 'top-right'
       })
@@ -212,13 +214,12 @@ function TicketSummary({ isStitched = false }: { isStitched?: boolean }) {
       setTicket({
         ...rest
       })
-      // dispatch(foodsAction.fetchData(dataFoodApi))
       navigate('/purchase/food')
       return
     }
     if ((paymentMethod?._id ?? 1) == 1) {
       mutate({
-        amount: ticket.total,
+        amount: ticket?.total || total || 0,
         bankCode: 'NCB',
         language: 'vn'
       } as MutatePaymentType)
