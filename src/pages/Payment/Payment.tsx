@@ -1,7 +1,7 @@
 import { RadioGroup } from '@/components/ui/radio-group'
 import vnpay from '/Images/movies/vnpay2.png'
 import momo from '/Images/movies/momo.png'
-import mb from '/Images/movies/mb.png'
+import vcb from '/Images/movies/vcb.png'
 import PaymentItem from './components/PaymentItem'
 import { useState } from 'react'
 import UserConfirmPayment from './components/UserConfirmPayment'
@@ -10,7 +10,7 @@ import { CreditCard, ShieldCheck } from 'lucide-react'
 const listPaymentMethods = [
   { _id: 1, name: 'VNPay', image: vnpay, cardNumber: 1234, value: '1' },
   { _id: 2, name: 'Momo', image: momo, cardNumber: 1234, value: '2' },
-  { _id: 3, name: 'MBBank', image: mb, cardNumber: 1234, value: '3' }
+  { _id: 3, name: 'Vietcombank', image: vcb, cardNumber: 2558, value: '3' }
 ]
 
 function Payment() {

@@ -14,10 +14,10 @@ function ModalPayMentMB() {
   const [copiedStk, setCopiedStk] = useState(false)
   const [copiedContent, setCopiedContent] = useState(false)
   const navigate = useNavigate()
-  const my_bank = { BANK_ID: 'MB', ACCOUNT_NUMBER: 9830908070605 }
+  const my_bank = { BANK_ID: 'VCB', ACCOUNT_NUMBER: '9938302558' }
   const [ticket] = useLocalStorage<TicketType>('ticket')
   const infoTicket = (ticket?.name_movie || '') + getNameSeat(ticket?.seat, '') + '1'
-  const QR = `https://img.vietqr.io/image/${my_bank.BANK_ID}-${my_bank.ACCOUNT_NUMBER}-compact2.png?amount=${ticket?.total || 0}&addInfo=${encodeURIComponent(infoTicket)}&accountName=ENVIDI`
+  const QR = `https://img.vietqr.io/image/${my_bank.BANK_ID}-${my_bank.ACCOUNT_NUMBER}-compact2.png?amount=${ticket?.total || 0}&addInfo=${encodeURIComponent(infoTicket)}`
 
   useEffect(() => {
     let count = 0
@@ -76,7 +76,7 @@ function ModalPayMentMB() {
           </div>
           <div>
             <h3 className="text-base sm:text-lg font-bold font-headline">
-              Thanh Toán VietQR MBBank
+              Thanh Toán VietQR Vietcombank
             </h3>
             <p className="text-xs text-[#A8A8B3]">
               Hệ thống tự động kích hoạt vé ngay khi nhận tiền
@@ -112,7 +112,7 @@ function ModalPayMentMB() {
           </div>
 
           <p className="text-[11px] text-[#71717A] text-center mt-2 max-w-xs">
-            Mở app ngân hàng bất kỳ (MBBank, Vietcombank, Techcombank, Momo...) quét mã để thanh toán tức thì
+            Mở app ngân hàng bất kỳ (Vietcombank, MB, Techcombank, Momo...) quét mã để thanh toán tức thì
           </p>
         </div>
 
@@ -138,22 +138,22 @@ function ModalPayMentMB() {
 
             <div className="flex items-center justify-between">
               <span className="text-[#71717A]">Ngân hàng:</span>
-              <span className="font-semibold text-white">MB Bank (Ngân Hàng Quân Đội)</span>
+              <span className="font-semibold text-white">Vietcombank (NH TMCP Ngoại Thương VN)</span>
             </div>
 
             <div className="flex items-center justify-between">
               <span className="text-[#71717A]">Chủ tài khoản:</span>
-              <span className="font-semibold text-white">ENVIDI</span>
+              <span className="font-semibold text-white">Chủ TK Vietcombank</span>
             </div>
 
             <div className="flex items-center justify-between bg-[#131317] p-2.5 rounded-xl border border-white/[0.04]">
               <div>
                 <span className="text-[#71717A] text-[10px] block">Số tài khoản:</span>
-                <span className="font-mono font-bold text-white text-xs">9830908070605</span>
+                <span className="font-mono font-bold text-white text-xs">9938302558</span>
               </div>
               <button
                 type="button"
-                onClick={() => copyToClipboard('9830908070605', 'stk')}
+                onClick={() => copyToClipboard('9938302558', 'stk')}
                 className="px-2.5 py-1 rounded-lg bg-[#24242C] hover:bg-[#2F2F3A] text-white text-[11px] font-semibold flex items-center gap-1 border border-white/10"
               >
                 {copiedStk ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}

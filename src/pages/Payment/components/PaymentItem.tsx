@@ -29,8 +29,8 @@ const METHOD_DETAILS: Record<number, { title: string; desc: string; badge?: stri
     icon: Smartphone
   },
   3: {
-    title: 'VietQR MBBank (Tự động)',
-    desc: 'Quét mã VietQR chuyển khoản tức thì, xác nhận trong 5 giây',
+    title: 'VietQR Vietcombank (Tự động)',
+    desc: 'Quét mã VietQR chuyển khoản trực tiếp tới STK 9938302558',
     badge: 'Khuyên dùng',
     icon: QrCode
   }
